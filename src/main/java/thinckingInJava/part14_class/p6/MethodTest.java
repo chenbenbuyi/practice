@@ -21,7 +21,7 @@ public class MethodTest {
         }
 
         Constructor<?>[] constructors = objectClass.getConstructors();
-        log.info("==========================================");
+        log.info("==============================================");
         for (Constructor constructor : constructors) {
             log.info(constructor.toString());
         }
