@@ -10,7 +10,7 @@ import java.util.Map;
  */
 public class UnboundedWildCards2 {
     static Map map1;
-    // 这种情况下编译器无法将其和原生类型map1分开
+    // 这种情况下编译器无法将其和原生类型map1进行区分
     static Map<?, ?> map2;
     static Map<String, ?> map3;
 
@@ -24,17 +24,17 @@ public class UnboundedWildCards2 {
     }
 
     static void assign3(Map<String,?> map) {
-        // 无法向无界统配符的声明对象中放入对象
+        // 无法向无界统配符的声明对象中放入具体对象
 //        map.put("", new Object());
         map3 = map;
     }
 
     public static void main(String[] args) {
-        assign1(new HashMap());
-        assign2(new HashMap());
-        assign3(new HashMap());
-        assign1(new HashMap<String,Integer>());
-        assign2(new HashMap<String,Integer>());
-        assign3(new HashMap<String,Integer>());
+        assign1(new HashMap(3));
+        assign2(new HashMap(2));
+        assign3(new HashMap(3));
+        assign1(new HashMap<String,Integer>(4));
+        assign2(new HashMap<String,Integer>(5));
+        assign3(new HashMap<String,Integer>(5));
     }
 }
