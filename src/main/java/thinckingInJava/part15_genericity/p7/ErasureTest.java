@@ -8,6 +8,7 @@ import java.util.*;
  * @Description 关于泛型擦除
  *  泛型类型只有在静态类型检查期间才会出现，编译过程中，程序中所有的泛型类型都讲被擦除，替换为非泛型的上界。
  *      List<T>被擦除为 List,其边界上界将被擦除为 Object
+ *      扩展：由于泛型擦除，一个类不能实现同一个泛型接口的两种变体
  */
 public class ErasureTest {
     public static void main(String[] args) {
