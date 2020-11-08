@@ -1,11 +1,11 @@
-package thinckingInJava.part16.p6;
+package thinckingInJava.part16.comm;
 
 import thinckingInJava.part15_genericity.p3.Generator;
 
 /**
  * @author chen
  * @date 2020/9/6 11:02
- * @Description
+ * @Description 对象生成器工具方法，通过该工具类的不同嵌套类，可以其Generator的任何泛型类型来创建相应的数据实例
  */
 public class CountingGenerator {
 
@@ -18,6 +18,7 @@ public class CountingGenerator {
             return value;
         }
     }
+
 
     public static class Byte implements Generator<java.lang.Byte> {
         private byte value = 0;
@@ -73,7 +74,6 @@ public class CountingGenerator {
 
     public static class Integer implements Generator<java.lang.Integer> {
         private int value = 0;
-
         public java.lang.Integer next() {
             return value++;
         }
@@ -81,7 +81,6 @@ public class CountingGenerator {
 
     public static class Long implements Generator<java.lang.Long> {
         private long value = 0;
-
         public java.lang.Long next() {
             return value++;
         }

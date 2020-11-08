@@ -1,4 +1,4 @@
-package thinckingInJava.part16.p6;
+package thinckingInJava.part16.comm;
 
 import thinckingInJava.part15_genericity.p3.Generator;
 import java.util.Random;
@@ -6,7 +6,7 @@ import java.util.Random;
 /**
  * @author chen
  * @date 2020/9/4 23:35
- * @Description
+ * @Description 随机对象生成器
  */
 public class RandomGenerator {
 

@@ -1,6 +1,6 @@
 package thinckingInJava.part21_juc.p9;
 
-import thinckingInJava.part16.p6.CountingGenerator;
+import thinckingInJava.part16.comm.CountingGenerator;
 import thinckingInJava.part17.p2.MapData;
 
 import java.util.Collections;

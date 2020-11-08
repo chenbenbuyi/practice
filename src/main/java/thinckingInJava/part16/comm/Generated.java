@@ -1,4 +1,4 @@
-package thinckingInJava.part16.p6;
+package thinckingInJava.part16.comm;
 
 import thinckingInJava.part15_genericity.p3.Generator;
 import thinckingInJava.part17.com.CollectionData;
@@ -8,13 +8,13 @@ import java.lang.reflect.Array;
 /**
  * @author chen
  * @date 2020/9/5 21:01
- * @Description
+ * @Description 数组填充工具类
  */
 public class Generated {
 
     // 数组填充
     public static <T> T[] array(T[] a, Generator<T> gen) {
-        return new CollectionData<T>(gen, a.length).toArray(a);
+        return new CollectionData<>(gen, a.length).toArray(a);
     }
 
     // 数组创建
