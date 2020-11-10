@@ -1,7 +1,5 @@
 package thinckingInJava.part15_genericity.p11;
 
-import java.io.FileInputStream;
-import java.io.ObjectInputStream;
 import java.util.*;
 
 /**
