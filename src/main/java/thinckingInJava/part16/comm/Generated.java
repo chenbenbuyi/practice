@@ -14,6 +14,7 @@ public class Generated {
 
     // 数组填充
     public static <T> T[] array(T[] a, Generator<T> gen) {
+    //  toArray() 以正确的顺序（从第一个到最后一个元素）返回一个包含此列表中所有元素的数组。
         return new CollectionData<>(gen, a.length).toArray(a);
     }
 

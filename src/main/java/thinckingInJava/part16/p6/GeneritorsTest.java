@@ -3,6 +3,10 @@ package thinckingInJava.part16.p6;
 import lombok.extern.slf4j.Slf4j;
 import thinckingInJava.part16.comm.CountingGenerator;
 import thinckingInJava.part15_genericity.p3.Generator;
+import thinckingInJava.part16.comm.Generated;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * @author chen
@@ -29,7 +33,17 @@ public class GeneritorsTest {
         }
     }
 
+
+    public static void test2() {
+        Integer[] arr = {9, 4, 6, 3};
+        arr = Generated.array(arr, new CountingGenerator.Integer());
+        log.info(Arrays.toString(arr));
+        Integer[] array = Generated.array(Integer.class, new CountingGenerator.Integer(), 4);
+        log.info(Arrays.toString(array));
+    }
+
     public static void main(String[] args) {
-        GeneritorsTest.test(CountingGenerator.class);
+//        GeneritorsTest.test(CountingGenerator.class);
+        GeneritorsTest.test2();
     }
 }
