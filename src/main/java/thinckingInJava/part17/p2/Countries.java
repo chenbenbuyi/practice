@@ -7,7 +7,6 @@ import java.util.*;
 /**
  * @author chen
  * @date 2020/11/19 23:39
- * @Description
  */
 
 @Slf4j
@@ -23,7 +22,7 @@ public class Countries {
         private  Set<Map.Entry<String, String>> entries = new EntrySet(DATA.length);
 
         /**
-         * Entry<K, V> 是Map接口的内部接口，用于描述一个Map实体，通过该实体，可以获取到其键和值 常用Set(因为不重复)来装
+         * Entry<K, V> 是Map接口的内部接口，用于描述一个Map实体，通过该实体，可以获取到其键和值 常用Set(因为Set的不重复正式基于HashMap的键的唯一性)来装
          */
         @Override
         public Set<Map.Entry<String, String>> entrySet() {
@@ -63,6 +62,11 @@ public class Countries {
             }
         }
 
+        /**
+         *  AbstractSet 的父级 AbstractCollection 有两个抽象方法
+         *      size()  set 的初始数据容量
+         *      iterator()  获取一个迭代器 此处的迭代器为自己内部构造的一个实现，而其迭代对象为Map 实体
+         */
         static class EntrySet extends AbstractSet<Map.Entry<String, String>> {
 
             private int size;
@@ -139,6 +143,9 @@ public class Countries {
     }
 
     public static void main(String[] args) {
+        /**
+         * 关键点在于自定义迭代器定义的迭代逻辑和对应集合抽象类实现 toString() 方法
+         */
         log.info(capitals(5).toString());
         log.info(names(6).toString());
         log.info(new HashMap<>(capitals(3)).toString());
