@@ -1,10 +1,11 @@
 package leetcode;
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.StopWatch;
 import org.junit.Test;
 
-import java.util.HashMap;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -14,7 +15,7 @@ import java.util.concurrent.TimeUnit;
  */
 @Slf4j
 public class one {
-
+    final StopWatch stopWatch = new StopWatch();
     /**
      * 给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那 两个 整数，并返回他们的数组下标。
      * <p>
@@ -26,7 +27,6 @@ public class one {
      */
     @Test
     public void test1() {
-        StopWatch stopWatch = new StopWatch();
         // 普通思维题解：内外层循环，遍历比较判断
         int[] arrs = {2, 5, 10, 7, 4, 11, 15};
         int target = 15;
@@ -53,37 +53,93 @@ public class one {
         }
     }
 
+    /**
+     * 给定一个字符串，请你找出其中不含有重复字符的 最长子串 的长度。
+     * 示例 1:
+     * 输入: "abcabcbb"
+     * 输出: 3
+     * 解释: 因为无重复字符的最长子串是 "abc"，所以其长度为 3。
+     * 示例 2:
+     * 输入: "bbbbb"
+     * 输出: 1
+     * 解释: 因为无重复字符的最长子串是 "b"，所以其长度为 1。
+     * 示例 3:
+     * <p>
+     * 输入: "pwwkew"
+     * 输出: 3
+     * 解释: 因为无重复字符的最长子串是 "wke"，所以其长度为 3。
+     *      请注意，你的答案必须是 子串 的长度，"pwke" 是一个子序列，不是子串。
+     */
     @Test
-    public void test2() {}
+    public void test2() {
+        /**
+         *  普通思路，两层循环，依次遍历比较 注意比较的时候两个不重复的字符索引之间可能会有重复字符
+         *  按照官方思路分析，其实也就是两个指针的滑动窗口解法。不过由于有两次重复的遍历，这种直白的思路执行效率并不是最优的
+         */
+        String s = "asdsdsddu";
+        if (StringUtils.isNotBlank(s)) {
+            char[] chars = s.toCharArray();
+            Set<Character> chartSet = new HashSet<>();
+            int maxLenth = 0;
+            int temp;
+            /**
+             *  这种有严重的BUG,在 字符长度为 2 的或空串 ，如 au 、 " " 等
+             */
+            for (int i = 0; i < chars.length - 1; i++) {
+                temp = 1;
+                for (int j = 1 + i; j < chars.length; j++) {
+                    // 两个索引指向位置的字符串不重复，并且索引之间无重复字符；
+                    if (chars[i] != chars[j] && chartSet.add(chars[j])) {
+                        temp++;
+                    } else {
+                        chartSet.clear();
+                        if (temp > maxLenth) {
+                            maxLenth = temp;
+                        }
+                        break;
+                    }
+                }
+            }
+            log.info("字符串长度：{}，不重复子串最大长度：{}", s.length(), maxLenth);
+        }
+    }
 
 
     @Test
-    public void test3() {}
+    public void test3() {
+    }
 
 
     @Test
-    public void test4() {}
+    public void test4() {
+    }
 
 
     @Test
-    public void test5() {}
+    public void test5() {
+    }
 
 
     @Test
-    public void test6() {}
+    public void test6() {
+    }
 
     @Test
-    public void test7() {}
-
-
-    @Test
-    public void test8() {}
+    public void test7() {
+    }
 
 
     @Test
-    public void test9() {}
+    public void test8() {
+    }
+
 
     @Test
-    public void test10() {}
+    public void test9() {
+    }
+
+    @Test
+    public void test10() {
+    }
 
 }

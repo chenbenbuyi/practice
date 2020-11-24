@@ -19,7 +19,7 @@ public class Countries {
 
     private static class FlyweightMap extends AbstractMap<String, String> {
 
-        private  Set<Map.Entry<String, String>> entries = new EntrySet(DATA.length);
+        private Set<Map.Entry<String, String>> entries = new EntrySet(DATA.length);
 
         /**
          * Entry<K, V> 是Map接口的内部接口，用于描述一个Map实体，通过该实体，可以获取到其键和值 常用Set(因为Set的不重复正式基于HashMap的键的唯一性)来装
@@ -63,9 +63,9 @@ public class Countries {
         }
 
         /**
-         *  AbstractSet 的父级 AbstractCollection 有两个抽象方法
-         *      size()  set 的初始数据容量
-         *      iterator()  获取一个迭代器 此处的迭代器为自己内部构造的一个实现，而其迭代对象为Map 实体
+         * AbstractSet 的父级 AbstractCollection 有两个抽象方法
+         * size()  set 的初始数据容量
+         * iterator()  获取一个迭代器 此处的迭代器为自己内部构造的一个实现，而其迭代对象为Map 实体
          */
         static class EntrySet extends AbstractSet<Map.Entry<String, String>> {
 
@@ -107,6 +107,7 @@ public class Countries {
                 }
             }
 
+            @Override
             public Iterator<Map.Entry<String, String>> iterator() {
                 return new Iter();
             }

@@ -55,7 +55,6 @@ public class ThreadPriority implements Runnable {
             executor.execute(new ThreadPriority(Thread.MIN_PRIORITY));
         }
         executor.execute(new ThreadPriority(Thread.MAX_PRIORITY));
-
         executor.shutdown();
     }
 }
