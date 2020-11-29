@@ -1,7 +1,7 @@
 package thinckingInJava.part21_juc.p9;
 
-import thinckingInJava.part16.comm.Generated;
-import thinckingInJava.part16.comm.RandomGenerator;
+import thinckingInJava.part16_array.comm.Generated;
+import thinckingInJava.part16_array.comm.RandomGenerator;
 
 import java.util.concurrent.*;
 

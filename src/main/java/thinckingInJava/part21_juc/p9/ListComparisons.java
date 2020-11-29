@@ -1,6 +1,6 @@
 package thinckingInJava.part21_juc.p9;
 
-import thinckingInJava.part17.p2.CountingIntegerList;
+import thinckingInJava.part17_collection.p2.CountingIntegerList;
 
 import java.util.ArrayList;
 import java.util.Collections;

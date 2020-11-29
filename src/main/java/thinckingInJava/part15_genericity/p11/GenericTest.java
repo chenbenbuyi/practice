@@ -1,7 +1,7 @@
 package thinckingInJava.part15_genericity.p11;
 
 import thinckingInJava.part15_genericity.p3.Generator;
-import thinckingInJava.part16.comm.RandomGenerator;
+import thinckingInJava.part16_array.comm.RandomGenerator;
 
 /**
  * @date: 2020/11/3 14:06
