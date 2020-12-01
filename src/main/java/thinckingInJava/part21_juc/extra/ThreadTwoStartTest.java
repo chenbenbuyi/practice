@@ -1,4 +1,4 @@
-package thinckingInJava.part21_juc.other;
+package thinckingInJava.part21_juc.extra;
 
 /**
  * @author chen
@@ -11,8 +11,6 @@ public class ThreadTwoStartTest implements Runnable {
         thread.start();
         thread.start();
     }
-
-
     @Override
     public void run() {
         System.out.println("线程运行");

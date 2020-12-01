@@ -1,4 +1,4 @@
-package thinckingInJava.part21_juc.other;
+package thinckingInJava.part21_juc.extra;
 
 import java.util.concurrent.SynchronousQueue;
 import java.util.concurrent.TimeUnit;
