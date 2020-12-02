@@ -12,5 +12,5 @@ public abstract class Test<C> {
         this.name = name;
     }
 
-    abstract int test(C container, TestParam param);
+    abstract int test(C list, TestParam tp);
 }
