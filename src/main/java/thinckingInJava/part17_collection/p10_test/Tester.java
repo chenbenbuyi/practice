@@ -52,12 +52,18 @@ public class Tester<C> {
 
     /**
      *  没有返回值类型的静态泛型方法，其方法体虽然没有返回值，但方法上也需要尖括号标注泛型类型
-     *
      */
     public static <C> void run(C c, List<Test<C>> tests) {
         new Tester<>(c, tests).timedTest();
     }
 
+    /**
+     *
+     * @param c  待测容器
+     * @param tests
+     * @param paramList
+     * @param <C>
+     */
     public static <C> void run(C c, List<Test<C>> tests, TestParam[] paramList) {
         new Tester<>(c, tests, paramList).timedTest();
     }
