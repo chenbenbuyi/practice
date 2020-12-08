@@ -1,6 +1,7 @@
 package thinckingInJava.part17_collection.p3_6;
 
 import lombok.extern.slf4j.Slf4j;
+import thinckingInJava.comm.model.User;
 import thinckingInJava.part17_collection.p2.Countries;
 
 import java.util.*;
@@ -27,11 +28,11 @@ public class CollectionTest {
          *   person -> person.getAge()  变为 Person::getAge   注意，方法名没有括号
          *
          */
-        log.info(Collections.max(names, (o1, o2) -> o1.hashCode()-o2.hashCode()));
+        log.info(Collections.max(names, (o1, o2) -> o1.hashCode() - o2.hashCode()));
         log.info(Collections.max(names, Comparator.comparingInt(String::hashCode)));
         List<String> cnames = Arrays.asList(new String[]{"中国", "米国", "日本", "朝鲜", "俄罗斯", "巴西", "英国", "澳大利亚"});
         // 保留包含在参数集合中的元素
         names.retainAll(cnames);
-        log.info("retainAll：{}",names);
+        log.info("retainAll：{}", names);
     }
 }

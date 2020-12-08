@@ -16,6 +16,7 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 public class one {
     final StopWatch stopWatch = new StopWatch();
+
     /**
      * 给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那 两个 整数，并返回他们的数组下标。
      * <p>
@@ -77,31 +78,8 @@ public class one {
          *  按照官方思路分析，其实也就是两个指针的滑动窗口解法。不过由于有两次重复的遍历，这种直白的思路执行效率并不是最优的
          */
         String s = "asdsdsddu";
-        if (StringUtils.isNotBlank(s)) {
-            char[] chars = s.toCharArray();
-            Set<Character> chartSet = new HashSet<>();
-            int maxLenth = 0;
-            int temp;
-            /**
-             *  这种有严重的BUG,在 字符长度为 2 的或空串 ，如 au 、 " " 等
-             */
-            for (int i = 0; i < chars.length - 1; i++) {
-                temp = 1;
-                for (int j = 1 + i; j < chars.length; j++) {
-                    // 两个索引指向位置的字符串不重复，并且索引之间无重复字符；
-                    if (chars[i] != chars[j] && chartSet.add(chars[j])) {
-                        temp++;
-                    } else {
-                        chartSet.clear();
-                        if (temp > maxLenth) {
-                            maxLenth = temp;
-                        }
-                        break;
-                    }
-                }
-            }
-            log.info("字符串长度：{}，不重复子串最大长度：{}", s.length(), maxLenth);
-        }
+        int  max = 0;
+        log.info("字符串长度：{}，不重复子串最大长度：{}", s.length(), max);
     }
 
 
