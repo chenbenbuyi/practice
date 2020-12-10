@@ -180,7 +180,7 @@ public class ListPerformance {
     public static void main(String[] args) {
         if (args.length > 0)
             Tester.defaultParams = TestParam.array(args);
-        Tester<List<Integer>> arrayTest = new Tester<List<Integer>>(null, tests.subList(1, 2)) {
+        Tester<List<Integer>> arrayTest = new Tester<List<Integer>>(null, tests.subList(1, 3)) {
             @Override
             protected List<Integer> initialize(int size) {
                 Integer[] array = Generated.array(Integer.class, new CountingGenerator.Integer(), size);
@@ -190,7 +190,7 @@ public class ListPerformance {
 
         arrayTest.setHeadline("Array as List");
         arrayTest.timedTest();
-        Tester.defaultParams = TestParam.array(100, 203, 1000, 200, 200000, 100, 3, 39999);
+        Tester.defaultParams = TestParam.array(10, 5000, 100, 5000, 1000, 1000, 10000, 200);
         if (args.length > 0) {
             Tester.defaultParams = TestParam.array(args);
         }

@@ -12,7 +12,13 @@ import java.util.List;
 @Slf4j
 public class Tester<C> {
     public static int fieldWildth = 0;
-    public static TestParam[] defaultParams = TestParam.array(10, 200, 4300, 4349, 98, 666, 2, 32388, 77);
+    /**
+     *  注意这种写法，用静态值设置默认值，然后赋值给实例变量。
+     *  这样，如果创建对象不给定值的话，就用默认值。在一些源码如 ArrayList ，HashMap中都可以看到这种写法
+     */
+    public static TestParam[] defaultParams = TestParam.array(10, 5000, 100, 5000, 1000,5000, 10000, 5000);
+    private TestParam[] paramList = defaultParams;
+
     protected C container;
 
     protected C initialize(int size) {
@@ -32,7 +38,6 @@ public class Tester<C> {
 
     private static int sizeWidth = 5;
     private static String sizeField = "%" + sizeWidth + "s";
-    private TestParam[] paramList = defaultParams;
 
     public Tester(C container, List<Test<C>> tests) {
         this.container = container;
@@ -97,6 +102,7 @@ public class Tester<C> {
             for (Test<C> test : tests) {
                 C kontainer = initialize(testParam.size);
                 long start = System.nanoTime();
+                // 相应的操作数量，用总共时间除以操作数量即可获取到每次操作的时间开销
                 int reps = test.test(kontainer, testParam);
                 long duration = System.nanoTime() - start;
                 long timePerRep = duration / reps;

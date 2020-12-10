@@ -54,6 +54,13 @@ public class SetPerformance {
         });
     }
 
+    /**
+     *  总体比较看，HashSet 性能要比TreeSet 好，特别是在添加和查询元素的时候。
+     *  TreeSet 主要特点在于可以维持元素的排序状态,其迭代的性能要比HashSet 好些
+     *  LinkedHashSet 因为链表维护元素的开销，插入操作比HashSet 更耗时间
+     *
+     *  测试反映的现象为：容器中的元素个数越少，性能反而较低
+     */
     public static void main(String[] args) {
         if (args.length > 0) {
             Tester.defaultParams = TestParam.array(args);
