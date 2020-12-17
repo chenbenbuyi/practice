@@ -27,6 +27,7 @@ public class FileTest {
          *   其它api同理
          */
         log.info("file 文件字节大小：{}", file.length());
+        // available 在没有阻塞的情况下所能读取的字节数
         log.info("file 文件字节大小2：{}", new FileInputStream(file).available());
         log.info("file 文件字节大小3：{}", new FileInputStream(file).getChannel().size());
         // 文件最后修改时间
