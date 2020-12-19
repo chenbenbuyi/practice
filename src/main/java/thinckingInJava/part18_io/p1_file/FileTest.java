@@ -27,7 +27,10 @@ public class FileTest {
          *   其它api同理
          */
         log.info("file 文件字节大小：{}", file.length());
-        // available 在没有阻塞的情况下所能读取的字节数
+        /**
+         * available ，表示在没有阻塞的情况下所能读取的字节数，该方法的工作方式会随着读取的媒介的不同而不同。
+         * 对于文件，则可以表示整个文件的大小，而对于其它不同类型的流，则不是这样的，谨慎使用
+         */
         log.info("file 文件字节大小2：{}", new FileInputStream(file).available());
         log.info("file 文件字节大小3：{}", new FileInputStream(file).getChannel().size());
         // 文件最后修改时间
