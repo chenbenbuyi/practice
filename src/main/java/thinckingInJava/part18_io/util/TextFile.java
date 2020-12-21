@@ -1,3 +1,4 @@
+
 package thinckingInJava.part18_io.util;
 
 import java.io.*;
@@ -12,6 +13,9 @@ import java.util.TreeSet;
  */
 public class TextFile extends ArrayList<String> {
 
+    /**
+     *   该构造器中，利用super 将读取的额数据按照指定的分隔符分割后存入ArrayList
+     */
     public TextFile(String fileName, String splitter) {
         super(Arrays.asList(read(fileName).split(splitter)));
         if ("".equals(get(0)))
@@ -24,6 +28,9 @@ public class TextFile extends ArrayList<String> {
 
     public void write(String fileName) {
         try (PrintWriter writer = new PrintWriter(new File(fileName).getAbsoluteFile())) {
+            /**
+             *  狗仔该对象（this）的时候，已经包含了要输出到文件的内容
+             */
             for (String s : this) {
                 writer.println(s);
             }
@@ -56,14 +63,12 @@ public class TextFile extends ArrayList<String> {
 
 
     public static void main(String[] args) {
-        String file = read("TextFile.java");
-        write("D:\\test", file);
+        String javaFile = "D:\\WorkSpace\\xiaoyuan\\src\\main\\java\\thinckingInJava\\part18_io\\util\\TextFile.java";
+        String fileContent = read(javaFile);
+        write("D:\\test", fileContent);
         TextFile textFile = new TextFile("D:\\test");
         textFile.write("D:\\test2");
-        TreeSet<String> words = new TreeSet<>(
-                new TextFile("TextFile.java", "\\w+")
-        );
-        System.out.println(words.headSet("a"));
+        System.out.println();
     }
 
 }
