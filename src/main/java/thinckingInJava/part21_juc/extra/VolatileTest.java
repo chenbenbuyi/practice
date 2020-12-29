@@ -31,7 +31,6 @@ public class VolatileTest {
                 countDownLatch.countDown();
             });
         }
-        countDownLatch.await();
         executorService.shutdown();
         log.info("20个并发线程执行完成之后变量 i 的值：{},原子变量atomicInteger的值：{}", i,atomicInteger);
     }

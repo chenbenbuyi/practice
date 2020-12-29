@@ -20,6 +20,8 @@ public class LinkedHashMapTest {
         /**
          *  通过初始容量、负载因子和订购模式构造对象
          *  其中，accessOrder,表示迭代顺序，默认为false,按照插入顺序迭代元素。设置为true,则会使用了LRU——最近最少被使用的调度算法对元素进行迭代
+         *  false 默认值，基于插入顺序
+         *  true 基于访问顺序，get一个元素后，这个元素会被拽加到最后
          */
         linkedHashMap = new LinkedHashMap<>(16, 0.75f, true);
         linkedHashMap.putAll(new CountingMapData(10));

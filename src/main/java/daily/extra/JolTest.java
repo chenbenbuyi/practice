@@ -9,7 +9,11 @@ import java.util.Map;
  * @date: 2020/11/24 18:45
  * @author: chen
  * @desc: 对象布局查看 参考博文：https://www.cnblogs.com/javazhiyin/p/14023183.html
- * 一个java 对象在虚拟机 堆上的存储中，一个对象实际上是包含 对象头（object header）、实例数据(静态属性不属于实例数据)、对齐填充（Java中的对象大小，只能是8的整数倍） 几个部分
+ * 一个java 对象在虚拟机 堆上的存储中，一个对象实际上是包含 对象头（object header）、实例数据(对象中的各类类型的字段信息——包括从父类继承来的，静态属性不属于实例数据)、对齐填充（Java中的对象大小默认只能是8的整数倍） 几个部分
+ *  其中，对象头有包含三部分结构：
+ *      MarkWord ：存储对象运行时数据，如哈希码，锁状态、GC分代年龄等。其中，64位操作系统占用 32个字节，32位系统占用 4个字节
+ *      元数据指针 ：对象指向类元数据的指针，虚拟机通过该指针确定对象属于哪个类的实例 。开启指针压缩占用 4 字节，未开启占用 8 字节
+ *      数组长度 ： 数组对象特有，占用 4 字节
  * 以下为最简单的情况，只包含几种基本数据类型，该对象输出：
  * OFFSET  SIZE      TYPE DESCRIPTION                               VALUE
  * 0     4           (object header)                           01 00 00 00 (00000001 00000000 00000000 00000000) (1)
@@ -26,6 +30,9 @@ public class JolTest {
     private boolean c = true;
 
     public static void main(String[] args) {
+        objA objA = new objA();
+        System.out.println(ClassLayout.parseInstance(objA).toPrintable());
+        System.out.println("===================分割====================");
         JolTest jolTest = new JolTest();
         System.out.println(ClassLayout.parseInstance(jolTest).toPrintable());
         System.out.println("===================分割====================");
@@ -35,6 +42,10 @@ public class JolTest {
         JolArra jolArra = new JolArra();
         System.out.println(ClassLayout.parseInstance(jolArra).toPrintable());
     }
+}
+
+class objA{
+
 }
 
 /**
