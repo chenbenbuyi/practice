@@ -34,7 +34,7 @@ public class BufferToText {
         System.out.println(buff.asCharBuffer());
 
         /**
-         * rewind 返回到数据开始的部分
+         * rewind 将position返回到数据开始的部分
          * 使用平台默认字符集对数据进行(Charset)decode,其结果 CharBuffer 就能很好的在控制台输出
          * 举一反三，虽然常用的 ByteBuffer是唯一与通道进行交互的缓冲器，但缓冲器却不只是 ByteBuffer，还有该示例中的
          * CharBuffer ，以及其它的诸如 IntBuffer,LongBuffer,DoubleBuffer等等
