@@ -13,6 +13,9 @@ public class MappedIO {
     private static int numOfInts = 4000000;
     private static int numOfUbuffInts = 200000;
 
+    /**
+     *  基于模板方法的测试类，比较下文的实现，确实代码要比自己写的骚气
+     */
     private abstract static class Tester {
         private String name;
 
@@ -36,7 +39,7 @@ public class MappedIO {
     }
 
     private static Tester[] tests = {
-            new Tester("Stream write") {
+            new Tester("IO流的方式执行文件写入") {
                 @Override
                 public void test() throws IOException {
                     DataOutputStream dos = new DataOutputStream(new BufferedOutputStream(new FileOutputStream(new File("D:\\test"))));
@@ -46,7 +49,7 @@ public class MappedIO {
                     dos.close();
                 }
             },
-            new Tester("Mapped write") {
+            new Tester("内存映射的方式执行文件写入") {
                 @Override
                 public void test() throws IOException {
                     FileChannel fc = new RandomAccessFile("D:\\test", "rw").getChannel();
@@ -57,7 +60,7 @@ public class MappedIO {
                     fc.close();
                 }
             },
-            new Tester("Stream read") {
+            new Tester("IO流的方式读文件") {
                 @Override
                 public void test() throws IOException {
                     DataInputStream dis = new DataInputStream(new BufferedInputStream(new FileInputStream("D:\\test")));
@@ -67,7 +70,7 @@ public class MappedIO {
                     dis.close();
                 }
             },
-            new Tester("Mapped read") {
+            new Tester("内存文件映射只读模式读取文件") {
                 @Override
                 public void test() throws IOException {
                     FileChannel fc = new FileInputStream(new File("D:\\test")).getChannel();
@@ -78,7 +81,7 @@ public class MappedIO {
                     fc.close();
                 }
             },
-            new Tester("Stream Read/Write") {
+            new Tester("IO流的方式读/写") {
                 @Override
                 public void test() throws IOException {
                     RandomAccessFile fc = new RandomAccessFile(new File("D:\\test"), "rw");
@@ -90,7 +93,7 @@ public class MappedIO {
                     fc.close();
                 }
             },
-            new Tester("Mapped Read/Write") {
+            new Tester("内存文件映射的方式读/写") {
                 @Override
                 public void test() throws IOException {
                     FileChannel fc = new RandomAccessFile(new File("D:\\test"), "rw").getChannel();
