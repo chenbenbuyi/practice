@@ -19,6 +19,7 @@ import java.nio.CharBuffer;
  *  position(int pos) 设置值
  *  remaining()  返回 limit-position，即当前位置和限制之间的元素数
  *  hasRemaining() 若有介于position和limit之间的元素，返回true
+ *  reset() 将缓冲器的位置(position)设置为之前标记(mark)的位置
  */
 public class UsingBuffers {
     private static void symmetricScramble(CharBuffer charBuffer) {
@@ -27,8 +28,8 @@ public class UsingBuffers {
             char c1 = charBuffer.get();
             char c2 = charBuffer.get();
             /**
+             *  get和put都会导致position位置的增加
              *  reset 将此缓冲区的位置重置为先前标记的位置。 调用此方法既不会更改也不丢弃该标记的值。
-             *  同时，get和put都会导致position位置的增加
              */
             charBuffer.reset();
             charBuffer.put(c2).put(c1);
@@ -45,8 +46,6 @@ public class UsingBuffers {
         CharBuffer charBuffer = buffer.asCharBuffer();
         charBuffer.put(chars);
         // 直接打印，只会打印position到limit之间的字符，如果要显示全部内容，需要通过rewind方法，将position设置到缓冲器的最开始位置
-        System.out.println(charBuffer.rewind());
-        symmetricScramble(charBuffer);
         System.out.println(charBuffer.rewind());
         symmetricScramble(charBuffer);
         System.out.println(charBuffer.rewind());
