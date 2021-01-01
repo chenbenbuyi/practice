@@ -39,15 +39,14 @@ public class UsingBuffers {
     public static void main(String[] args) {
         /**
          *  ？？？ 这里，不同的字符串输入，有的正常，有的却会抛出 BufferUnderflowException 异常,why?
-         *
+         *  原因在于字符数组的奇偶，偶数时调用两次get不会导致越界行为，奇数情况，根据 position 等值的增加变化，会导致越界行为发生
          */
-        char[] chars = "UsingBuffers".toCharArray();
+        char[] chars = "chenbenbuyi2".toCharArray();
         ByteBuffer buffer = ByteBuffer.allocate(chars.length * 2);
         CharBuffer charBuffer = buffer.asCharBuffer();
         charBuffer.put(chars);
         // 直接打印，只会打印position到limit之间的字符，如果要显示全部内容，需要通过rewind方法，将position设置到缓冲器的最开始位置
-        System.out.println(charBuffer.rewind());
-        symmetricScramble(charBuffer);
+//        System.out.println(charBuffer);
         System.out.println(charBuffer.rewind());
         symmetricScramble(charBuffer);
         System.out.println(charBuffer.rewind());
