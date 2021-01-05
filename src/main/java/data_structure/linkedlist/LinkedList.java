@@ -1,4 +1,4 @@
-package thinckingInJava.part17_collection.extra.linkedlist;
+package data_structure.linkedlist;
 
 /**
  * @date: 2020/12/9 10:00

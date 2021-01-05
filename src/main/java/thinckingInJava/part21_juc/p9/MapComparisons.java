@@ -46,6 +46,7 @@ abstract class MapTest extends Tester<Map<Integer, Integer>> {
     class Reader extends TestTask {
         long result = 0;
 
+        @Override
         void test() {
             for (int i = 0; i < testCycles; i++) {
                 for (int index = 0; index < containerSize; index++) {
@@ -54,6 +55,7 @@ abstract class MapTest extends Tester<Map<Integer, Integer>> {
             }
         }
 
+        @Override
         void putResults() {
             readResult += result;
             readTime += duration;
@@ -61,6 +63,8 @@ abstract class MapTest extends Tester<Map<Integer, Integer>> {
     }
 
     class Writer extends TestTask {
+
+        @Override
         void test() {
             for (int i = 0; i < testCycles; i++) {
                 for (int index = 0; index < containerSize; index++) {
@@ -69,11 +73,13 @@ abstract class MapTest extends Tester<Map<Integer, Integer>> {
             }
         }
 
+        @Override
         void putResults() {
             writeTime += duration;
         }
     }
 
+    @Override
     void startReadersAndWriters() {
         for (int i = 0; i < nReaders; i++) {
             exec.execute(new Reader());

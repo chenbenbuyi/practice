@@ -1,4 +1,4 @@
-package thinckingInJava.part17_collection.extra.linkedlist;
+package data_structure.linkedlist;
 
 import lombok.Data;
 
