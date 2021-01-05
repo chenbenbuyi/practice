@@ -13,7 +13,8 @@ import java.util.List;
 public class RecoverCADState {
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         ObjectInputStream in = new ObjectInputStream(new FileInputStream("D:\\test"));
-        List<Class<? extends Shape>> shapeTypes = (List<Class<? extends Shape>>) in.readObject();
+        // 这句代码多余吗？ 不多余，因为序列化和反序列化的信息读取顺序必须要有保证
+//        in.readObject();
         Line.deserializeStaticState(in);
         List<Shape> shapes = (List<Shape>) in.readObject();
         System.out.println(shapes);

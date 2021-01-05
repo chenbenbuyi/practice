@@ -26,7 +26,6 @@ public class StoreCADState {
         for (int i = 0; i <10 ; i++) {
             shapes.get(i).setColor(Shape.GREEN);
         }
-
         ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("D:\\test"));
         out.writeObject(shapeTypes);
         Line.serializeStaticState(out);
@@ -114,6 +113,10 @@ class Square extends Shape {
     }
 }
 
+/**
+ * 该对象中的serializeStaticState和deserializeStaticState方法演示了对于静态字段的特殊处理
+ *  因为对象序列化时保存对象的状态信息，而今天字段属于类级别，是不会被序列化的
+ */
 class Line extends Shape {
     private static int color = RED;
 
