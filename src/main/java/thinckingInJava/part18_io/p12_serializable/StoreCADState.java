@@ -115,7 +115,7 @@ class Square extends Shape {
 
 /**
  * 该对象中的serializeStaticState和deserializeStaticState方法演示了对于静态字段的特殊处理
- *  因为对象序列化时保存对象的状态信息，而今天字段属于类级别，是不会被序列化的
+ *  因为对象序列化是保存对象的状态信息，而静态字段属于类级别，是不会被序列化的
  */
 class Line extends Shape {
     private static int color = RED;
