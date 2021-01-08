@@ -15,5 +15,8 @@ public class LinkedListTest {
             linkedList.add(new Node(i, "第" + i + "个节点"));
         }
         System.out.println(linkedList);
+        // 测试节点删除
+        linkedList.remove(new Node(5,"第" + 5 + "个节点"));
+        System.out.println(linkedList);
     }
 }
