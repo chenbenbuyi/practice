@@ -5,7 +5,7 @@ package java_concurrency.chapter3;
  * @date 2021/1/12 22:14
  * @Description 可见性测试
  */
-public class NoVisibility {
+public class VolatileTest1 {
     private static boolean ready;
     private static int number;
 
