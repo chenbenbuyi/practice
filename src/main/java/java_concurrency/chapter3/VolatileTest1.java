@@ -1,9 +1,13 @@
 package java_concurrency.chapter3;
 
+import thinckingInJava.part21_juc.extra.VolatileTest;
+
 /**
  * @author chen
  * @date 2021/1/12 22:14
  * @Description 可见性测试
+ * {@link VolatileTest}
+ * {@link VolatileTest2}
  */
 public class VolatileTest1 {
     private static boolean ready;

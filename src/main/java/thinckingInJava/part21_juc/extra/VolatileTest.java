@@ -1,5 +1,7 @@
 package thinckingInJava.part21_juc.extra;
 
+import java_concurrency.chapter3.VolatileTest1;
+import java_concurrency.chapter3.VolatileTest2;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.concurrent.CountDownLatch;
@@ -12,6 +14,8 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @date 2020/12/24 22:01
  * @Description 模拟在多线程环境下，测试 volatile 变量产生的线程安全问题
  * volatile 变量能保证线程间可见，但是变量自身的自增或自减操作无法保证原子性,除非用原子变量如AtomicInteger进行替代
+ * {@link VolatileTest1}
+ * {@link VolatileTest2}
  */
 @Slf4j
 public class VolatileTest {
