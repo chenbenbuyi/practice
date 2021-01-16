@@ -49,6 +49,32 @@ public class ClassTest {
         Class<? extends String[]> aClass = arr.getClass();
         log.info("数组的类型应用对象：" + aClass.toString());
     }
+
+    /**
+     *   测试验证：在不人为篡改ClassLoader 机制的情况下，在同一个虚拟机内，一个类无论创建多少个实例，都只对应一个Class对象实例
+     */
+    @Test
+    public void test3(){
+        Class<Integer> integerClass = Integer.class;
+        Class<? extends Integer> aClass = new Integer(3).getClass();
+        Class<? extends Integer> aClass2 = new Integer(666).getClass();
+        Class<? extends Integer> aClass3 = new Integer(232434).getClass();
+        System.out.println(integerClass.hashCode());
+        System.out.println(aClass.hashCode());
+        System.out.println(aClass2.hashCode());
+        System.out.println(aClass3.hashCode());
+
+        Class<? extends String[]> aClass4 = new String[12].getClass();
+        String[] strings = {};
+        Class<? extends String[]> aClass5 = strings.getClass();
+        Class<? extends int[]> aClass6 = new int[20].getClass();
+        Class<? extends int[]> aClass7 = new int[1929].getClass();
+        System.out.println(aClass4.hashCode());
+        System.out.println(aClass5.hashCode());
+        System.out.println(aClass6.hashCode());
+        System.out.println(aClass7.hashCode());
+
+    }
 }
 
 interface MyInterface {}
