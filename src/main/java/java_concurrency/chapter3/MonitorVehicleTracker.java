@@ -18,6 +18,9 @@ public class MonitorVehicleTracker {
         this.locations = deepCopy(locations);
     }
 
+    /**
+     *  返回的是全部的拷贝，相当于快照
+     */
     public synchronized Map<String, MutablePoint> getLocations() {
         return deepCopy(locations);
     }
@@ -71,6 +74,12 @@ public class MonitorVehicleTracker {
         mutablePoint.x=12;
         mutablePoint.y=12;
         System.out.println(map);
+
+        /**
+         * 所谓视图，就是如果原始数据有变更，视图中的数据会随之做相同的变更以反映这种变化
+         */
+        map.put("宝骏",new MutablePoint(100,100));
+        System.out.println(unmodifiableMap);
     }
 }
 
