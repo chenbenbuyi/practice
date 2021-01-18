@@ -1,4 +1,4 @@
-package java_concurrency.chapter3;
+package java_concurrency.chapter4;
 
 import java.util.Collections;
 import java.util.HashMap;
