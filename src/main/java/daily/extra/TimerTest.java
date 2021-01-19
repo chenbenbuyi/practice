@@ -1,5 +1,7 @@
 package daily.extra;
 
+import thinckingInJava.part21_juc.p7.GreenHouseScheduler;
+
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
@@ -7,7 +9,8 @@ import java.util.concurrent.TimeUnit;
 /**
  * @date: 2021/1/12 9:32
  * @author: chen
- * @desc:
+ * @desc: 再次声明：不推荐使用 Timer来做定时任务调度，而应该用 ScheduledExecutorService 进行代替
+ * {@link GreenHouseScheduler}
  */
 public class TimerTest {
 
