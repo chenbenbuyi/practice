@@ -19,16 +19,23 @@ public class TimerTest {
      * 线程并行处理定时任务时，Timer运行多个TimeTask时，只要其中之一没有捕获抛出的异常，其它任务便会自动终止运行，
      * 使用ScheduledExecutorService则没有这个问题。
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         /**
          *  schedule(TimerTask task, long delay)  在指定的延迟之后安排指定的任务执行。
          *  直接运行，timer子线程线程不会停止.因为schedule实际上是将任务加入等待队列—又是队列的应用
          *  新加入的任务会排队串行执行
          */
         Timer timer = new Timer();
-        timer.schedule(new MyTask(), 2000);
-        timer.schedule(new MyTask(), 2000);
+        timer.schedule(new MyTask(), 1000);
+        timer.schedule(new MyTask(), 1000);
         System.out.println("主线程执行流");
+
+        /**
+         *  测试Timer 任务抛出异常后续任务无法继续执行
+         */
+        timer.schedule(new ThrowTask(), 2000);
+        TimeUnit.SECONDS.sleep(5);
+        timer.schedule(new MyTask(), 2000);
     }
 
 
@@ -45,8 +52,15 @@ public class TimerTest {
                 e.printStackTrace();
             }
             System.out.println("timer子线程任务");
-        //  Timer 运行多个任务是，只要任务之一没有捕获抛出的异常，其它后继任务便会自动终止运行
+            //  Timer 运行多个任务是，只要任务之一没有捕获抛出的异常，其它后继任务便会自动终止运行
 //            int i = 1/0;
+        }
+    }
+
+    static class ThrowTask extends TimerTask {
+        @Override
+        public void run() {
+            throw new RuntimeException();
         }
     }
 }
