@@ -1,4 +1,4 @@
-package thinckingInJava.part21_juc.p5.optimize;
+package java_concurrency.chapter5.optimize;
 
 import java.math.BigInteger;
 
