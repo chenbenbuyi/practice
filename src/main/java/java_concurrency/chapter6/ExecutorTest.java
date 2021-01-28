@@ -12,7 +12,7 @@ public class ExecutorTest {
         Callable<String> callable = new Callable<String>() {
             @Override
             public String call() throws Exception {
-                TimeUnit.SECONDS.sleep(3);
+                TimeUnit.SECONDS.sleep(10);
                 return "测试延迟任务返回值获取";
             }
         };
