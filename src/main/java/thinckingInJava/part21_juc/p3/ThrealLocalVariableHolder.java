@@ -51,7 +51,7 @@ class Accessor implements Runnable {
 
     @Override
     public void run() {
-        while (!Thread.currentThread().isInterrupted()){
+        while (!Thread.currentThread().isInterrupted()) {
             ThrealLocalVariableHolder.increment();
             System.out.println(this);
             Thread.yield();

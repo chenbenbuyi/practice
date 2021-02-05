@@ -5,6 +5,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.concurrent.CyclicBarrier;
 
 /**
  * @author chen
@@ -14,7 +15,7 @@ import java.util.List;
 public class SychronizedContainerTest {
 
     /**
-     * 当对同步容器进行迭代操作期间有增减元素，依然会表现出fast-fail的行为。因为在同步容器的设计中，并没有后考虑并发修改的问题。
+     * 当对同步容器进行迭代操作期间有增减元素，依然会表现出fast-fail的行为。因为在同步容器(简单理解为通过synchronized来实现同步的容器)的设计中，并没有后考虑并发修改的问题。
      *  这与我们常见的 ArrayList 等的快速失败机制是一样的。
      *  所以记好了，不会快速失败的是并发容器。那么这就有疑问了，快速失败是怎么产生的，并发容器的快速失败又是如何解决的？
      */

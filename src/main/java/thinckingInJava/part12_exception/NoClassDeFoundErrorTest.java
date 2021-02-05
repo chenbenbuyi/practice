@@ -1,12 +1,5 @@
 package thinckingInJava.part12_exception;
 
-import thinckingInJava.comm.model.User;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-
 /**
  * @author chen
  * @date 2020/12/14 22:59
@@ -19,65 +12,42 @@ import java.util.stream.Collectors;
  * e.printStackTrace();
  * }
  * NoClassDeFoundError ，在java的异常体系同属于Error,意味这是不能捕获的，无法恢复的错误。
- * 通常意味着类在编译时能找到合适的类，但是运行的时候找不到或者能找到但是对应的类不可用，比如关联类静态初始化失败
+ * 通常意味着类在编译时能找到合适的类，但是运行的时候找不到或者能找到但是对应的类不可用，比如关联类含有静态代码块但代码块内容初始化异常
  */
 public class NoClassDeFoundErrorTest {
     public static void main(String[] args) {
-        C c = new C();
-        c.test();
-    }
-
-}
-
-
-class A {
-    static {
-        System.out.println("大A");
-    }
-}
-
-class a {
-    static {
-        System.out.println("小a");
+//        ABC abc = new ABC();
+        try {
+            //第一次需要加载StaticInitClz类，JVM会加载该类，初始化该类的静态变量或执行静态块
+            new StaticInitClz();
+        } catch (Throwable t) {
+            //因为初始化静态变量失败，所以加载类失败。
+            t.printStackTrace();
+        }
+        new StaticInitClz();
     }
 }
 
-
-class B {
-    static {
-        System.out.println("大B");
-    }
-}
-
-class b extends B {
-    static {
-        System.out.println("小b");
-    }
-}
 
 /**
- * C 和 D 的情形模拟的是关联类静态初始化失败:
- * 由于类D 静态初始化时发生意外（ExceptionInInitializerError），继而导致依赖他的类C也无法正常初始化
- * ?????????????????????????????
+ *  估计也只有脑残或者测试的时候才会这样去命名类
+ *  在Linux上运行着两个类编译的程序没有问题，因为 Linux是区分文件名大小写的
+ *  但是在Windows上，由于文件名并不区分大小写（尝试在同一目录下保存同英文单词大小写不同的文件），所以，编译后，在Windows系统的编译目录下，abc.class将会覆盖掉ABC.class(编译器只管编译，它是不知道操作系统文件限制的)
+ *  于是，就出现了编译时ABC和abc类都找到，但是运行时却找不到的问题,就好似你在classpath目录下将本该存在的class编译文件删除掉了一样
+ *
  */
-class C {
-    void test(){
-        D d = new D();
-        d.getName("chenbenbuyi");
-    }
-}
-
-class D {
-    private static Map<String, String> cache;
+class ABC {
     static {
-        List<User> list = null;
-        cache = list.stream().collect(Collectors.toMap(User::getName, User::getName));
-    }
-
-    String getName(String name){
-        return cache.get(name);
+        System.out.println("大ABC");
     }
 }
+
+class abc extends ABC{
+    static {
+        System.out.println("小abc");
+    }
+}
+
 
 
 

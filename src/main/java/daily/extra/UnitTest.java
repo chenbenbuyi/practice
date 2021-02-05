@@ -1,44 +1,36 @@
 package daily.extra;
 
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
+
+import java.util.concurrent.TimeUnit;
 
 /**
  * @date: 2020/12/29 19:55
  * @author: chen
  * @desc: 日常单元测试集合
  */
+@Slf4j
 public class UnitTest {
     /**
-     * 测试内存占用  堆内存设置 -Xmx=
-     * Too small initial heap
+     * 测试内存占用  堆内存设置 Too small initial heap
      * -Xmx 堆大小上限，最大空间(-Xmx)是物理内存的1/4，如果程序中分配的内存超过了这个限制，那么会出现
      * 注意：内存撑满是很危险的事情，轻则电脑短时间卡死，重则电脑
      */
 
-    public static void main(String[] args) {
-        System.out.println("free:" + Runtime.getRuntime().freeMemory() / 1024
-                / 1024);
-        System.out.println("total:" + Runtime.getRuntime().totalMemory() / 1024
-                / 1024);
-        System.out.println("max:" + Runtime.getRuntime().maxMemory() / 1024
-                / 1024);
+    public static void main(String[] args) throws InterruptedException {
+        log.info("虚拟机空闲内存:{}M", Runtime.getRuntime().freeMemory() / 1024/ 1024);
+        log.info("JVM总内存大小:{}M" ,Runtime.getRuntime().totalMemory() / 1024/ 1024);
+        log.info("JVM尝试使用的最大内存:{}M" + Runtime.getRuntime().maxMemory() / 1024/ 1024);
         System.out.println("=============");
-        long t = System.currentTimeMillis();
-        try {
-            Thread.sleep(3000);
-        } catch (Exception ee) {
-            ee.printStackTrace();
-        }
+        TimeUnit.SECONDS.sleep(3);
+        // 申请较大内存
         String[] aaa = new String[2000000];
         System.out.println(Runtime.getRuntime().freeMemory() / 1024 / 1024);
         System.out.println(Runtime.getRuntime().totalMemory() / 1024 / 1024);
         System.out.println(Runtime.getRuntime().maxMemory() / 1024 / 1024);
         System.out.println("=============");
-        try {
-            Thread.sleep(3000);
-        } catch (Exception ee) {
-            ee.printStackTrace();
-        }
+        TimeUnit.SECONDS.sleep(3);
         for (int i = 0; i < 2000000; i++) {
             aaa[i] = new String("aaa");
         }
@@ -46,11 +38,7 @@ public class UnitTest {
         System.out.println(Runtime.getRuntime().totalMemory() / 1024 / 1024);
         System.out.println(Runtime.getRuntime().maxMemory() / 1024 / 1024);
         System.out.println("=============");
-        try {
-            Thread.sleep(30000);
-        } catch (Exception ee) {
-            ee.printStackTrace();
-        }
+        TimeUnit.SECONDS.sleep(3);
     }
 
     @Test
