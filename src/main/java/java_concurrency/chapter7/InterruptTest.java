@@ -35,7 +35,10 @@ public class InterruptTest {
             while (true) {
                 if (Thread.currentThread().isInterrupted()) {
                     System.out.println(Thread.currentThread().getName()+"中断状态已被设置");
-                    // 静态方法 interrupted 会清除当前线程的中断状态 如果连续两次调用该方法，第二次会返回false
+                    /**
+                     * 静态方法 interrupted 会清除当前线程的中断状态 如果连续两次调用该方法，第二次会返回false
+                     *  实际上，Thread 对象内部，interrupted和isInterrupted底层调用的是同一个方法，只是传入了是或否清除线程中断状态的布尔值
+                     */
                     boolean interrupted = Thread.interrupted();
                     System.out.println(Thread.currentThread().getName() +"线程是否中断："+interrupted);
                     System.out.println(Thread.currentThread().getName()+"interrupted方法调用之后中断状态："+Thread.currentThread().isInterrupted());

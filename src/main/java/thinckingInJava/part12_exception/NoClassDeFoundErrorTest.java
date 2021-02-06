@@ -21,9 +21,8 @@ public class NoClassDeFoundErrorTest {
             //第一次需要加载StaticInitClz类，JVM会加载该类，初始化该类的静态变量或执行静态块
             new StaticInitClz();
         } catch (Throwable t) {
-            //因为初始化静态变量失败，所以加载类失败。
-            t.printStackTrace();
         }
+        // 因为第一次加载类已经失败，再次创建对象时将导致 NoClassDefFoundError
         new StaticInitClz();
     }
 }
