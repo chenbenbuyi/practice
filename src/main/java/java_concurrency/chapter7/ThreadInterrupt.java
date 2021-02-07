@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit;
 
 public class ThreadInterrupt{
     /**
-     *  该测试发起中断却并没有中断阻塞队列的put方法，任务并没有停止，jvm也没有退出，why? (注意：没中断的情况线程创建代码都为 代码 1 中所示情况)
+     *  该测试发起中断却并没有中断阻塞队列的 put方法，任务并没有停止，jvm也没有退出，why? (注意：没中断的情况线程创建代码都为 代码 1 中所示情况)
      */
     public static void main(String[] args) throws InterruptedException {
         testInterrupt2();
