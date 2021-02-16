@@ -41,7 +41,7 @@ public class ThreadCreateTest {
              *  详细请参见 {@link CurrentThreadTest}
              */
 //            System.out.println("继承Thread类的方式，线程对象的名字为："+this.getName());
-            System.out.println("继承Thread类的方式，线程名为："+Thread.currentThread().getName());
+            System.out.println("继承Th2222222222r ead类的方式，线程名为："+Thread.currentThread().getName());
         }
     }
 
