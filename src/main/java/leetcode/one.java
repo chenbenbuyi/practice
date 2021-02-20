@@ -78,7 +78,7 @@ public class one {
          *  按照官方思路分析，其实也就是两个指针的滑动窗口解法。不过由于有两次重复的遍历，这种直白的思路执行效率并不是最优的
          */
         String s = "asdsdsddu";
-        int  max = 0;
+        int max = 0;
         log.info("字符串长度：{}，不重复子串最大长度：{}", s.length(), max);
     }
 
