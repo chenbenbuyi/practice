@@ -1,4 +1,4 @@
-package java_concurrency.chapter7;
+package java_concurrency.chapter7_interrupt;
 
 import java.math.BigInteger;
 import java.util.concurrent.ArrayBlockingQueue;

@@ -1,4 +1,4 @@
-package java_concurrency.chapter6;
+package java_concurrency.chapter6_executor;
 
 import java.util.Random;
 import java.util.concurrent.*;

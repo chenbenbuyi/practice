@@ -1,4 +1,4 @@
-package java_concurrency.chapter7.socket;
+package java_concurrency.chapter7_interrupt.socket;
 
 import java.io.IOException;
 import java.net.Socket;
