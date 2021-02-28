@@ -1,4 +1,4 @@
-package java_concurrency.chapter8_threadpool;
+package java_concurrency.chapter10_liveness;
 
 import java.util.concurrent.*;
 
