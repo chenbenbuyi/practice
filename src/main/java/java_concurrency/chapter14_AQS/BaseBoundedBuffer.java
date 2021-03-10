@@ -6,8 +6,11 @@ import java.lang.reflect.Array;
  * @author chen
  * @date 2021/3/6 19:58
  * @Description
+ * 对于状态依赖性的操作可以有多种处理方式，可以简单粗暴的直接抛出异常中断执行，或者温柔一点返回一些错误状态，或者保持阻塞直到条件满足。
+ *  例如，在Queue中提供了两种方式，poll方法在队列为空时返回null,remove方法则会抛出运行时异常
  */
 public abstract class BaseBoundedBuffer<V> {
+    // 基于泛型数组的有界缓存
     private final V[] buf;
     private int tail;
     private int head;
