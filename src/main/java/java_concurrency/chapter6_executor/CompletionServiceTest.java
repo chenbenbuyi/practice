@@ -14,7 +14,7 @@ public class CompletionServiceTest {
 
     public static void main(String[] args) throws InterruptedException, ExecutionException {
         ExecutorService executor = new ThreadPoolExecutor(10, 10, 0L, TimeUnit.SECONDS, new SynchronousQueue<>());
-        CompletionService completionService = new ExecutorCompletionService(executor);
+        CompletionService<String> completionService = new ExecutorCompletionService<>(executor);
         Random random = new Random(100);
         for (int i = 0; i < 10; i++) {
             Callable<String> callable = () -> {
@@ -26,10 +26,10 @@ public class CompletionServiceTest {
         }
         /**
          *   take 获取并移除表示下一个已完成任务的 Future，如果目前不存在这样的任务，则等待。
-         *   预测输出：根据任务休眠时间由短到长依次输出，在最短时间的执行任务返回之前，take会等待
+         *   预测输出：根据任在务休眠时间由短到长依次输出，最短时间的执行任务返回之前，take会等待
          */
         for (int i = 0; i < 10; i++) {
-            Future take = completionService.take();
+            Future<String> take = completionService.take();
             System.out.println(take.get());
         }
         executor.shutdown();
