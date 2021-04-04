@@ -25,7 +25,7 @@ public abstract class BaseBoundedBuffer<V> {
 //        this.buf = (V[]) new Object[capacity];
     }
 
-    protected synchronized final void doPut(V v) {
+    protected final synchronized  void doPut(V v) {
         buf[tail] = v;
         if (++tail == buf.length) {
             tail = 0;
@@ -33,7 +33,7 @@ public abstract class BaseBoundedBuffer<V> {
         ++count;
     }
 
-    protected synchronized final V doTake() {
+    protected final synchronized  V doTake() {
         V v = buf[head];
         buf[head] = null;
         if (++head == buf.length) {
@@ -43,11 +43,11 @@ public abstract class BaseBoundedBuffer<V> {
         return v;
     }
 
-    public synchronized final boolean isFull() {
+    public final synchronized  boolean isFull() {
         return count == buf.length;
     }
 
-    public synchronized final boolean isEmpty() {
+    public final synchronized  boolean isEmpty() {
         return count == 0;
     }
 }
