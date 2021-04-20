@@ -51,56 +51,54 @@ public class BoundedExecutor {
      * 测试发现，如果策略 DiscardOldestPolicy 和 同步移交队列一起使用，会导致 栈溢出 StackOverflowError(单线程的情况下，随着最大线程数增多，稍有好转，说白了还是看任务能否处理得过来)
      * 实际上，只有当队列是线程池是无界（比如newCachedThreadPool）的或者可以拒绝任务时，使用SynchronousQueue才有价值
      */
-//    public static void main(String[] args) throws InterruptedException {
-//        ThreadPoolExecutor exec = new ThreadPoolExecutor(1, 1,
-//                0L, TimeUnit.MILLISECONDS,
-//                new SynchronousQueue<>(), Executors.defaultThreadFactory(), new ThreadPoolExecutor.DiscardOldestPolicy());
-//        Semaphore semaphore = new Semaphore(5);
-//
-//        for (int i = 0; i < 10; i++) {
-//            TimeUnit.MILLISECONDS.sleep(5);
-//            try{
-//                exec.execute(() -> {
-//                    try {
-//                        TimeUnit.MILLISECONDS.sleep(10);
-//                        System.out.println("提交的延时任务");
-//                    } catch (InterruptedException e) {
-//                        e.printStackTrace();
-//                    }
-//                });
-//            }catch (Error e){
-//                e.printStackTrace();
-//            }
-//        }
-//    }
-
-
     public static void main(String[] args) throws InterruptedException {
         ThreadPoolExecutor exec = new ThreadPoolExecutor(1, 1,
                 0L, TimeUnit.MILLISECONDS,
-                new ArrayBlockingQueue(1), Executors.defaultThreadFactory(), new ThreadPoolExecutor.AbortPolicy());
-        /**
-         *  利用信号量来限流，信号量的上限值通常设置为线程池大小加上队列容量
-         */
-        Random random = new Random(50);
-        Semaphore semaphore = new Semaphore(2);
-        BoundedExecutor boundedExecutor = new BoundedExecutor(exec, semaphore);
+                new SynchronousQueue<>(), Executors.defaultThreadFactory(), new ThreadPoolExecutor.DiscardOldestPolicy());
         for (int i = 0; i < 10; i++) {
-            Order order = new Order();
-            try {
-                boundedExecutor.submitTask(() -> {
+            TimeUnit.MILLISECONDS.sleep(5);
+            try{
+                exec.execute(() -> {
                     try {
-                        TimeUnit.SECONDS.sleep(random.nextInt(5));
-                        System.out.println("第 " + order.getOrder() + " 个任务执行完成！");
+                        TimeUnit.MILLISECONDS.sleep(10);
+                        System.out.println("提交的延时任务");
                     } catch (InterruptedException e) {
+                        e.printStackTrace();
                     }
-                }, order);
-            } catch (Error e) {
+                });
+            }catch (Error e){
                 e.printStackTrace();
             }
         }
-        exec.shutdown();
     }
+
+
+//    public static void main(String[] args) throws InterruptedException {
+//        ThreadPoolExecutor exec = new ThreadPoolExecutor(1, 1,
+//                0L, TimeUnit.MILLISECONDS,
+//                new ArrayBlockingQueue(1), Executors.defaultThreadFactory(), new ThreadPoolExecutor.AbortPolicy());
+//        /**
+//         *  利用信号量来限流，信号量的上限值通常设置为线程池大小加上队列容量
+//         */
+//        Random random = new Random(50);
+//        Semaphore semaphore = new Semaphore(2);
+//        BoundedExecutor boundedExecutor = new BoundedExecutor(exec, semaphore);
+//        for (int i = 0; i < 10; i++) {
+//            Order order = new Order();
+//            try {
+//                boundedExecutor.submitTask(() -> {
+//                    try {
+//                        TimeUnit.SECONDS.sleep(random.nextInt(5));
+//                        System.out.println("第 " + order.getOrder() + " 个任务执行完成！");
+//                    } catch (InterruptedException e) {
+//                    }
+//                }, order);
+//            } catch (Error e) {
+//                e.printStackTrace();
+//            }
+//        }
+//        exec.shutdown();
+//    }
 
 
 }

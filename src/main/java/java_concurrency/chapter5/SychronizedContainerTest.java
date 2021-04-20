@@ -2,9 +2,7 @@ package java_concurrency.chapter5;
 
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.CyclicBarrier;
 
 /**
@@ -21,23 +19,23 @@ public class SychronizedContainerTest {
      */
     @Test
     public void test1() {
-//        Vector<Integer> integers = new Vector<>();
+        Vector<Integer> integers = new Vector<>();
 //        List<Integer> integers = Collections.synchronizedList(new ArrayList<>());
-        List<Integer> integers = new ArrayList<>();
+//        List<Integer> integers = new ArrayList<>();
         for (int i = 0; i < 100; i++) {
             integers.add(i);
         }
-        Iterator<Integer> iterator = integers.iterator();
-        while (iterator.hasNext()){
-            if(30==iterator.next()){
-                iterator.remove();
-            }
-        }
-//        for (Integer i : integers) {
-//            if (i > 20) {
-//                integers.remove(i);
+//        Iterator<Integer> iterator = integers.iterator();
+//        while (iterator.hasNext()){
+//            if(30==iterator.next()){
+//                iterator.remove();
 //            }
 //        }
+        for (Integer i : integers) {
+            if (i > 20) {
+                integers.remove(i);
+            }
+        }
     }
 
 

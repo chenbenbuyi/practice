@@ -1,4 +1,4 @@
-package data_structure.linkedlist.single;
+package data_structure.list.linkedlist.single;
 
 import lombok.Data;
 

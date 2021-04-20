@@ -1,4 +1,4 @@
-package data_structure.linkedlist.single;
+package data_structure.list.linkedlist.single;
 
 /**
  * @date: 2021/1/7 14:06
