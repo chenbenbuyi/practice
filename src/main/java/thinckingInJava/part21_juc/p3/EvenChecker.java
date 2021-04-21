@@ -71,7 +71,7 @@ public class EvenChecker implements Runnable {
      * CallerRunsPolicy  由调用线程自己处理该任务
      * DiscardOldestPolicy  丢弃最前面的任务，重新尝试提交被拒绝的任务
      * for循环过程中，由于抛出异常，导致运行中断。这其实就是简单的异常导致任务中断。 如下i==5自己抛出异常任务中断，也是一样的效果.这个时候，即使有线程超时时间，也不起作用
-     * 解决办法，就是要么捕获异常，要么不使用抛出异常的拒绝策略。挥着强行设置allowCoreThreadTimeOut 参数为true,让核心线程退出
+     * 解决办法，就是要么捕获异常，要么不使用抛出异常的拒绝策略。或者强行设置allowCoreThreadTimeOut 参数为true,让核心线程退出
      *  区别：allowCoreThreadTimeOut 是让核心线程退出，而 keepAliveTime 是给核心线程外的空闲线程设置超时时间
      */
 
