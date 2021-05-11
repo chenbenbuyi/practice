@@ -17,6 +17,12 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.16.18</version>
+            <!--
+            compile  如果没有指定，则默认使用该依赖范围。使用此范围的依赖，在编译，测试，运行着三种classpath都有效
+            provided 使用此范围的依赖对于编译和测试都有效，但在运行时无效。典型例子就是servlet-api和此处的lombok编译插件依赖
+            runtime  运行时依赖范围。使用此范围的依赖对于测试和运行classpath有效，但在编译主代码是无效。典型例子就是JDBC驱动实现
+            import： 只支持pom类型的依赖，而且必须在存在于模块pom.xml的dependencyManagement配置区内。 这功能是用来解决pom.xml 只能单继承不能多继承问题，利用组合而不是继承关系引入依赖。最经典的是springboot
+            -->
             <scope>provided</scope>
         </dependency>
 
