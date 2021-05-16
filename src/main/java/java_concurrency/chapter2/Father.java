@@ -25,6 +25,7 @@ class Child extends Father {
     @Override
     public synchronized void doSomething() {
         System.out.println("子类对象："+this);
+        System.out.println("父类对象："+super.hashCode());
         /**
          * 重要理解，super.doSomething(); 这句代码的到底是谁在调用？ 当然还是子类对象在调用
          * 所以，子类对于父类同步方法的访问其调用者是子类对象，所以线程获取也自然是子类对象的锁。

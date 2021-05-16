@@ -22,7 +22,6 @@ public class MapIterationTest {
         map.put(4, "MyBatis framework");
         map.put(5, "Java中文社群");
     }
-
     public static void main(String[] args) {
         // 1 迭代器——利用 entrySet 或 keySet
         Set<Map.Entry<Integer, String>> entries = map.entrySet();
