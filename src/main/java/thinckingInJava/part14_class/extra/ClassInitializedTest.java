@@ -6,7 +6,9 @@ package thinckingInJava.part14_class.extra;
  * @desc: 问：有哪几种获取类 Class 对象的方式，哪些会触发类的初始化，哪些不会触发？
  * 1、类名.class  不会
  * 2、类对象.class  类都实例化了，肯定先就初始化了
- * 3、Class.forName  会
+ *
+ *  对第3点的勘误：Class.forName 方式只有类的全限定名的时候，会触发类的初始化，但是可以调用另一个重载方法，指定不初始化类。
+ * 3、Class.forName  会 --》 不一定
  * 4、类加载器加载类  不会
  * <p>
  * 问：对于当前方法入口所在的内部类的情况，是否结论一致？
@@ -22,7 +24,8 @@ public class ClassInitializedTest {
 //        MyClass2 myClass = new MyClass2();
 //        Class<? extends MyClass2> aClass = myClass.getClass();
 //        System.out.println(aClass.hashCode());
-        Class<?> aClass1 = Class.forName("thinckingInJava.part14_class.extra.ClassInitializedTest$MyClass2");
+//        Class<?> aClass1 = Class.forName("thinckingInJava.part14_class.extra.ClassInitializedTest$MyClass2");
+        Class<?> aClass1 = Class.forName("thinckingInJava.part14_class.extra.ClassInitializedTest$MyClass2",false,ClassLoader.getSystemClassLoader());
         System.out.println(aClass1.hashCode());
 //        ClassLoader classLoader = ClassInitializedTest.class.getClassLoader();
 //        Class<?> aClass2 = classLoader.loadClass("thinckingInJava.part14_class.extra.ClassInitializedTest$MyClass2");
@@ -43,9 +46,9 @@ public class ClassInitializedTest {
 
 }
 
-//class MyClass2 {
-//
-//    static {
-//        System.out.println("MyCalss2 初始化");
-//    }
-//}
+class MyClass2 {
+
+    static {
+        System.out.println("MyCalss2 初始化");
+    }
+}
