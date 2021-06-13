@@ -19,13 +19,14 @@ public class MyClassLoader extends SecureClassLoader {
     private String classPath;
     private String suffix;
 
-    MyClassLoader(String clasPath,String suffix) {
-        this.classPath = clasPath;
+    MyClassLoader(String classPath,String suffix) {
+        this.classPath = classPath;
         this.suffix = suffix;
     }
 
     @Override
     protected Class<?> findClass(String name) {
+        System.out.println("MyJarClassLoader 自定义的findClass方法。。。。。。。。。");
         byte[] bytes = loadClassData(classPath + File.separator + name.replace(".", File.separator).concat(suffix));
         return defineClass(name, bytes, 0, bytes.length);
     }
@@ -35,8 +36,6 @@ public class MyClassLoader extends SecureClassLoader {
      * 来源于ClassLoader 类注释启发，通过获取网络传输或文件中类字节码的字节数组形式来实现非标准class文件的类加载
      */
     private byte[] loadClassData(String classPath) {
-        // load the class data from the connection or file
-//        return FileUtil.readBytes(classPath);
         return readBytes(classPath);
     }
 

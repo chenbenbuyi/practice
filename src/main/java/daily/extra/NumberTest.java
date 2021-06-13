@@ -1,5 +1,9 @@
 package daily.extra;
 
+import cn.hutool.core.util.StrUtil;
+
+import java.lang.reflect.Field;
+
 /**
  * @author chen
  * @date 2021/5/23 21:15
@@ -33,6 +37,14 @@ public class NumberTest {
          */
         double d = Double.NaN;
         System.out.println(d != d);
+
+        int e = 0;
+        e=e+++e;
+        System.out.println(e);
+
+        // NullPointerException 数组创建时并没有在堆上分配内存，在赋值的时候，也根本找不到地址
+//        int a[] = null;
+//        a[0]=1;
 
     }
 }
