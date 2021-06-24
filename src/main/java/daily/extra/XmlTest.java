@@ -4,11 +4,14 @@ import cn.hutool.core.io.FileUtil;
 import org.junit.Test;
 import pojo.xml.Menu;
 import pojo.xml.Menus;
+import pojo.xml.User;
+import pojo.xml.Users;
 import util.XMLUtil;
 
 import javax.xml.bind.JAXBException;
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 
@@ -22,6 +25,7 @@ public class XmlTest {
 
     static Menu menu;
     static Menu menu2;
+
     static {
         menu = new Menu().setMenuId(1L).setIcon("图标").setName("系统管理").setUrl("/user/list");
         List<Menu> children = Arrays.asList(new Menu().setMenuId(11L).setIcon("图标").setName("参数配置").setUrl("/params/conf"), new Menu().setMenuId(12L).setIcon("图标").setName("时钟配置").setUrl("/params/timer"));
@@ -35,18 +39,39 @@ public class XmlTest {
 
     /**
      * 踩坑指南：
-     *  javax.xml.bind.DataBindingException: com.sun.xml.internal.bind.v2.runtime.IllegalAnnotationsException: 5 counts of IllegalAnnotationExceptions类的两个属性具有相同名称 "children"
+     * javax.xml.bind.DataBindingException: com.sun.xml.internal.bind.v2.runtime.IllegalAnnotationsException: 5 counts of IllegalAnnotationExceptions类的两个属性具有相同名称 "children"
      * 原因：因为使用了 lombok 的 @Data 注解，导致序列化器序列化为xml文件时同时绑定了Java类中的属性和方法，通过 @XmlAccessorType(XmlAccessType.FIELD) 注解指定只访问字段即可
-     *
-     *  疑惑：对象属性上不添加@XmlAttribute注解，则字段会生成单个的xml节点，别人的明明也没有该注解标注啊何解？
+     * <p>
      */
     @Test
-    public void testCreate() throws JAXBException, IOException {
+    public void testCreateMenu() throws JAXBException, IOException {
         Menus menus = new Menus();
         menus.add(menu);
         menus.add(menu2);
         String fileName = "menu.xml";
-        XMLUtil.beanToXml(menus,Menus.class,FileUtil.newFile(PATH + fileName));
+        XMLUtil.beanToXml(menus, Menus.class, FileUtil.newFile(PATH + fileName));
+    }
+
+
+    @Test
+    public void testCreateUser() throws JAXBException, IOException {
+        Users users = new Users();
+
+        User user = new User();
+        User user2 = new User();
+
+        user.setCreateTime(LocalDateTime.now());
+        user.setPerms(Arrays.asList(menu,menu2));
+
+        user2.setPerms(Arrays.asList(menu));
+        user2.setCreateTime(LocalDateTime.now());
+        user2.setName("二号员工");
+
+        users.add(user);
+        users.add(user2);
+
+        String fileName = "user.xml";
+        XMLUtil.beanToXml(users, Users.class, FileUtil.newFile(PATH + fileName));
     }
 
 
@@ -59,5 +84,8 @@ public class XmlTest {
         String fileName = "menu.xml";
         Menus menus = XMLUtil.xmlToBean(Menus.class, new File(PATH + fileName));
         System.out.println(menus);
+        String fileName2 = "user.xml";
+        Users users = XMLUtil.xmlToBean(Users.class, new File(PATH + fileName2));
+        System.out.println(users);
     }
 }

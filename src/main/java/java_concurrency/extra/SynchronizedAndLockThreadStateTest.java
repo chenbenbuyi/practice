@@ -121,6 +121,7 @@ public class SynchronizedAndLockThreadStateTest {
 
 
     /**
+     *  线程dump 分析参考 ：https://www.javatang.com/archives/2017/10/25/36441958.html
      *
      * 线程dump——
      *

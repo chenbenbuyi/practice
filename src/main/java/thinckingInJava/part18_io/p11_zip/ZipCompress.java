@@ -1,5 +1,7 @@
 package thinckingInJava.part18_io.p11_zip;
 
+import thinckingInJava.part16_array.comm.RandomGenerator;
+
 import java.io.*;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;

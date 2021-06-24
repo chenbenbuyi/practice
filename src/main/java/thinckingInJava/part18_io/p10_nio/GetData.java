@@ -28,7 +28,6 @@ public class GetData {
         }
         System.out.println("");
         byteBuffer.rewind();
-
         byteBuffer.asShortBuffer().put((short)233);
         System.out.println("getShort获取值："+byteBuffer.getShort());
         byteBuffer.rewind();
