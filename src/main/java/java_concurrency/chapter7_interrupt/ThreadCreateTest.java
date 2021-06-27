@@ -1,9 +1,14 @@
 package java_concurrency.chapter7_interrupt;
 
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.FutureTask;
+
 /**
  * @author chen
  * @date 2021/2/2 23:55
- * @Description 最原始的两种线程创建方式 继承Thread 类，实现Runnable接口
+ * @Description  Java创建线程的几种方式
+ * 最原始的两种线程创建方式就是 继承Thread 类，实现Runnable接口
+ * 还有需要返回值的情况可以使用FutureTask
  */
 public class ThreadCreateTest {
 
@@ -14,7 +19,7 @@ public class ThreadCreateTest {
      *  只有调用Thread类的start方法，执行本地方法，正式开启一个线程，操作系统才会正式创建任务线程，并在获得CPU时间片时，本地方法实现代码又会调用Java线程对象Thread的run方法，最终调用 target 的run方法执行线程任务。
      *
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ExecutionException, InterruptedException {
         /**
          *  方式 1 的方式 target 为 null,也就是没有委托的目标线程对象，实际上此时它自己就是真正要执行的一个Runnable,在调用start方法开启操作系统线程后，底层代码会调用其继承自Runnable接口的run方法执行线程任务；
          *  方式 2 和 3 会赋值目标线程对象 target，会调用Thread类中的run方法继而执行目标线程对象target自己的run方法执行线程任务
@@ -25,6 +30,12 @@ public class ThreadCreateTest {
         new Thread1("继承Thread类创建的线程").start();  // 方式 1
         new Thread(new Thread1("继承Thread类创建的线程"),"奇怪的方式开启的线程").start();  // 方式 2
         new Thread(new Thread2(),"实现Runnable接口创建线程").start();  // 方式 3
+
+        FutureTask<String> futureTask = new FutureTask<>(() -> "利用futuretask创建有返回值的线程任务");
+        new Thread(futureTask).start();
+        String s = futureTask.get();
+        System.out.println(s);
+
     }
 
     static class Thread1 extends Thread{
