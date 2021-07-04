@@ -1,4 +1,4 @@
-package thinckingInJava.part14_class.proxy;
+package designer.proxy;
 
 /**
  * @author chen

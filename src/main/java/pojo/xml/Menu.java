@@ -38,6 +38,7 @@ public class Menu {
                 ", name='" + name + '\'' +
                 ", url='" + url + '\'' +
                 ", icon='" + icon + '\'' +
+                ", desc='" + desc + '\'' +
                 ", children=" + children +
                 '}';
     }

@@ -1,4 +1,4 @@
-package thinckingInJava.part14_class.proxy;
+package designer.proxy;
 
 /**
  * @author chen
@@ -15,13 +15,13 @@ public class StaticProxyObject implements Interface {
 
     @Override
     public void doSomething() {
-        System.out.println("doSomething：在原代理对象基础上进行额外操作,比如aop功能切面，通过代理切入额外的执行逻辑");
+        System.out.println("doSomething：静态代理");
         anInterface.doSomething();
     }
 
     @Override
     public void dosomethingElse(String arg) {
-        System.out.println("dosomethingElse：在原代理对象基础上进行额外操作："+arg);
+        System.out.println("dosomethingElse：静态代理：" + arg);
         anInterface.dosomethingElse(arg);
     }
 }

@@ -19,7 +19,6 @@ public class MethodTest {
         for (Method method : methods) {
             log.info(method.toString());
         }
-
         Constructor<?>[] constructors = objectClass.getConstructors();
         log.info("==============================================");
         for (Constructor constructor : constructors) {
