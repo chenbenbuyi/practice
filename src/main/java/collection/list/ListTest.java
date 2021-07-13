@@ -4,8 +4,9 @@ import collection.list.model.Book;
 import lombok.SneakyThrows;
 import org.junit.Test;
 
-import java.util.*;
-import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
