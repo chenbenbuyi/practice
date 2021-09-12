@@ -18,5 +18,7 @@ public class TreeMapTest {
         treeMap.put("bb","sdd");
         treeMap.put("cc","一样的");
         System.out.println(treeMap);
+        System.out.println("chen".hashCode()^("chen".hashCode()>>>16));
+        System.out.println(3052512&31);
     }
 }

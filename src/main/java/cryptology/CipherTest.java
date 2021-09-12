@@ -1,4 +1,4 @@
-package cryptography;
+package cryptology;
 
 import atom.cipher.api.ISM2Cipher;
 import atom.cipher.api.ISM3Cipher;

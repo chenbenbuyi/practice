@@ -33,7 +33,6 @@ public class JDKProxyTest {
         long num = nextUniqueNumber.getAndIncrement();
         byte[] classBytes = ProxyGenerator.generateProxyClass(proxyClassNamePrefix + num, new Class[]{Interface.class});
 //        FileUtil.writeBytes(classBytes, PATH + proxyClassNamePrefix + num+".class");
-
         try (FileOutputStream fio = new FileOutputStream(PATH + proxyClassNamePrefix + num + ".class", false);
              BufferedOutputStream bos = new BufferedOutputStream(fio)) {
             bos.write(classBytes, 0, classBytes.length);

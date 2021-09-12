@@ -1,4 +1,4 @@
-package daily.newer;
+package cryptology;
 
 import cn.hutool.core.util.HexUtil;
 import org.bouncycastle.crypto.AsymmetricCipherKeyPair;
@@ -10,6 +10,8 @@ import org.bouncycastle.crypto.params.ECPublicKeyParameters;
 import org.bouncycastle.math.ec.ECCurve;
 import org.bouncycastle.math.ec.ECFieldElement;
 import org.bouncycastle.math.ec.ECPoint;
+import util.Base64Utils;
+import util.CommonUtils;
 
 import java.math.BigInteger;
 import java.security.SecureRandom;
@@ -19,19 +21,18 @@ import java.security.SecureRandom;
  * @author: chen
  * @desc:
  */
-public class SignTest {
-    public static final BigInteger SM2_ECC_P = new BigInteger("FFFFFFFEFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00000000FFFFFFFFFFFFFFFF",16);
+public class SM2KeyPairTest {
+    private static final BigInteger SM2_ECC_P = new BigInteger("FFFFFFFEFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00000000FFFFFFFFFFFFFFFF", 16);
 
-    public static final BigInteger SM2_ECC_A = new BigInteger("FFFFFFFEFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00000000FFFFFFFFFFFFFFFC",16);
+    private static final BigInteger SM2_ECC_A = new BigInteger("FFFFFFFEFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00000000FFFFFFFFFFFFFFFC", 16);
 
-    public static final BigInteger SM2_ECC_B = new BigInteger("28E9FA9E9D9F5E344D5A9E4BCF6509A7F39789F515AB8F92DDBCBD414D940E93",16);
+    private static final BigInteger SM2_ECC_B = new BigInteger("28E9FA9E9D9F5E344D5A9E4BCF6509A7F39789F515AB8F92DDBCBD414D940E93", 16);
 
-    public static final BigInteger SM2_ECC_N = new BigInteger("FFFFFFFEFFFFFFFFFFFFFFFFFFFFFFFF7203DF6B21C6052B53BBF40939D54123",16);
+    private static final BigInteger SM2_ECC_N = new BigInteger("FFFFFFFEFFFFFFFFFFFFFFFFFFFFFFFF7203DF6B21C6052B53BBF40939D54123", 16);
 
-    public static final BigInteger SM2_ECC_GX = new BigInteger("32C4AE2C1F1981195F9904466A39C9948FE30BBFF2660BE1715A4589334C74C7",16);
+    private static final BigInteger SM2_ECC_GX = new BigInteger("32C4AE2C1F1981195F9904466A39C9948FE30BBFF2660BE1715A4589334C74C7", 16);
 
-    public static final BigInteger SM2_ECC_GY = new BigInteger("BC3736A2F4F6779C59BDCEE36B692153D0A9877CC62A474002DF32E52139F0A0",16);
-
+    private static final BigInteger SM2_ECC_GY = new BigInteger("BC3736A2F4F6779C59BDCEE36B692153D0A9877CC62A474002DF32E52139F0A0", 16);
 
 
     public static void main(String[] args) {
@@ -39,35 +40,33 @@ public class SignTest {
         ECFieldElement.Fp gxFieldElement = new ECFieldElement.Fp(SM2_ECC_P, SM2_ECC_GX);
         ECFieldElement.Fp gyFieldElement = new ECFieldElement.Fp(SM2_ECC_P, SM2_ECC_GY);
         ECCurve.Fp curve = new ECCurve.Fp(SM2_ECC_P, SM2_ECC_A, SM2_ECC_B);
-        ECPoint.Fp pointG =new ECPoint.Fp(curve, gxFieldElement, gyFieldElement);
+        ECPoint.Fp pointG = new ECPoint.Fp(curve, gxFieldElement, gyFieldElement);
         ECDomainParameters domainParams = new ECDomainParameters(curve, pointG, SM2_ECC_N);
 
         ECKeyGenerationParameters keyGenerationParams = new ECKeyGenerationParameters(domainParams, new SecureRandom());
         keyPairGenerator.init(keyGenerationParams);
         AsymmetricCipherKeyPair keyPair = keyPairGenerator.generateKeyPair();
-        ECPrivateKeyParameters privateKeyParams = (ECPrivateKeyParameters)keyPair.getPrivate();
-        ECPublicKeyParameters publicKeyParams = (ECPublicKeyParameters)keyPair.getPublic();
+        ECPrivateKeyParameters privateKeyParams = (ECPrivateKeyParameters) keyPair.getPrivate();
+        ECPublicKeyParameters publicKeyParams = (ECPublicKeyParameters) keyPair.getPublic();
         BigInteger privateKey = privateKeyParams.getD();
         ECPoint publicKey = publicKeyParams.getQ();
         System.out.println("len:" + privateKey.toByteArray().length);
         KeyPair generateKeyPair = new KeyPair(publicKey, privateKey);
         byte[] pub = formatPublicKey(generateKeyPair.getPublicKey());
         byte[] pri = formatPrivateKey(generateKeyPair.getPrivateKey());
-        System.out.println("公钥Base64编码："+Base64Utils.encodeToString(pub));
-        System.out.println("私钥Base64编码："+Base64Utils.encodeToString(pri));
+        System.out.println("公钥Base64编码：" + Base64Utils.encodeToString(pub));
+        System.out.println("私钥Base64编码：" + Base64Utils.encodeToString(pri));
 
-        System.out.println("公钥16进制编码："+HexUtil.encodeHexStr(pub));
-        System.out.println("私钥16进制编码："+HexUtil.encodeHexStr(pri));
+        System.out.println("公钥16进制编码：" + HexUtil.encodeHexStr(pub));
+        System.out.println("私钥16进制编码：" + HexUtil.encodeHexStr(pri));
 
     }
 
-    public static class KeyPair
-    {
+    public static class KeyPair {
         private ECPoint publicKeyEc;
         private BigInteger privateKeyBi;
 
-        public KeyPair(ECPoint publicKey, BigInteger privateKey)
-        {
+        KeyPair(ECPoint publicKey, BigInteger privateKey) {
             this.publicKeyEc = publicKey;
             this.privateKeyBi = privateKey;
         }

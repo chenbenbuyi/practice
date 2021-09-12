@@ -1,6 +1,6 @@
 package collection.set;
 
-import thinckingInJava.part17_collection.p8_map.LinkedHashMapTest;
+import collection.map.LinkedHashMapTest;
 
 import java.util.LinkedHashSet;
 import java.util.Set;

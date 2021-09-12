@@ -1,4 +1,4 @@
-package daily.newer;
+package util;
 
 
 import java.io.ByteArrayOutputStream;
