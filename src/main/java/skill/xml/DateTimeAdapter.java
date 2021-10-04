@@ -1,4 +1,4 @@
-package pojo.xml;
+package skill.xml;
 
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 import java.text.DateFormat;

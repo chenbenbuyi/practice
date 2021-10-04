@@ -1,4 +1,4 @@
-package pojo.xml;
+package skill.xml;
 
 import lombok.Data;
 import lombok.experimental.Accessors;

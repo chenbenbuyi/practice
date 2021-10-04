@@ -1,4 +1,4 @@
-package pojo.xml;
+package skill.xml;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -8,16 +8,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @date: 2021/6/22 16:10
+ * @date: 2021/6/23 14:16
  * @author: chen
- * @desc: xml对应的菜单模型
  */
 
-@XmlRootElement(name = "menus")
+
+@XmlRootElement(name = "users")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Menus extends ArrayList<Menu> {
+public class Users extends ArrayList<User> {
 
-    @XmlElement(name = "menu")
-    public List<Menu> menus = this;
-
+    @XmlElement(name = "user")
+    public List<User> users = this;
 }

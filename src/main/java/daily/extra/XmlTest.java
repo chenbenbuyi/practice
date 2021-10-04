@@ -2,10 +2,10 @@ package daily.extra;
 
 import cn.hutool.core.io.FileUtil;
 import org.junit.Test;
-import pojo.xml.Menu;
-import pojo.xml.Menus;
-import pojo.xml.User;
-import pojo.xml.Users;
+import skill.xml.Menu;
+import skill.xml.Menus;
+import skill.xml.User;
+import skill.xml.Users;
 import util.XMLUtil;
 
 import javax.xml.bind.JAXBException;
