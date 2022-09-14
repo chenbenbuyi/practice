@@ -113,6 +113,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>2.5.14</version>
             </plugin>
             <!--
             利用 maven-install-plugin 插件来安装 jar 包到 maven 本地仓库

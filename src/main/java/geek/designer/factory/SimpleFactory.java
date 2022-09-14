@@ -1,9 +1,9 @@
-package designer.factory;
+package geek.designer.factory;
 
-import designer.factory.inter.Phone;
-import designer.factory.model.AiPhone;
-import designer.factory.model.HuaWeiPhone;
-import designer.factory.model.XiaoMiPhone;
+import geek.designer.factory.inter.Phone;
+import geek.designer.factory.model.AiPhone;
+import geek.designer.factory.model.HuaWeiPhone;
+import geek.designer.factory.model.XiaoMiPhone;
 
 /**
  * @date: 2020/11/3 11:45

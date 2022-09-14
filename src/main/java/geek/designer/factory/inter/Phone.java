@@ -1,4 +1,4 @@
-package designer.factory.inter;
+package geek.designer.factory.inter;
 
 /**
  * @date: 2020/11/3 11:36

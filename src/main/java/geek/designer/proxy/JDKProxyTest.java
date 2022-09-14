@@ -1,4 +1,4 @@
-package designer.proxy;
+package geek.designer.proxy;
 
 import sun.misc.ProxyGenerator;
 

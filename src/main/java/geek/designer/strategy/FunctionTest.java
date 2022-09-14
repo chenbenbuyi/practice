@@ -1,4 +1,4 @@
-package designer.strategy;
+package geek.designer.strategy;
 
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Before;

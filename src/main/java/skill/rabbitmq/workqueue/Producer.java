@@ -19,10 +19,10 @@ public class Producer {
         // 获取连接中的通道
         Channel channel = connection.createChannel();
 
-        channel.queueDeclare("work-queue", true, false, false, null);
+        channel.queueDeclare("jenkins.task.tool.queue", true, false, false, null);
 
         for (int i = 0; i < 10; i++) {
-            channel.basicPublish("", "work-queue", MessageProperties.PERSISTENT_TEXT_PLAIN, (i + "任务队列消息").getBytes());
+            channel.basicPublish("", "jenkins.task.tool.queue", MessageProperties.PERSISTENT_TEXT_PLAIN, (i + "任务队列消息").getBytes());
         }
 
         RabbitMQUtil.close(connection, channel);

@@ -17,12 +17,12 @@ public class RabbitMQUtil {
 
     static {
         connectionFactory = new ConnectionFactory();
-        connectionFactory.setHost("192.168.43.122");
-        connectionFactory.setPort(5672);
+        connectionFactory.setHost("192.168.50.11");
+        connectionFactory.setPort(20006);
         // 设置连接的虚拟主机。 一个虚拟机主机类似于一个数据库，不同的应用程序可以设置不同的虚拟主机
-        connectionFactory.setVirtualHost("/chen");
-        connectionFactory.setUsername("chenbenbuyi");
-        connectionFactory.setPassword("123456");
+        connectionFactory.setVirtualHost("/");
+        connectionFactory.setUsername("admin");
+        connectionFactory.setPassword("password");
     }
 
     // 获取连接对象

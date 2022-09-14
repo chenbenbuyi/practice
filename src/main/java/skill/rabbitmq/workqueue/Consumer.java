@@ -19,9 +19,9 @@ public class Consumer {
         // 获取连接中的通道
         Channel channel = connection.createChannel();
         channel.basicQos(1);
-        channel.queueDeclare("work-queue", true, false, false, null);
+        channel.queueDeclare("jenkins.task.tool.queue", false, false, false, null);
 
-        channel.basicConsume("work-queue", false, new DefaultConsumer(channel) {
+        channel.basicConsume("jenkins.task.tool.queue", false, new DefaultConsumer(channel) {
             @Override
             public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException {
                 System.out.println("消费者1获取的工作队列中的消息：" + new String(body));

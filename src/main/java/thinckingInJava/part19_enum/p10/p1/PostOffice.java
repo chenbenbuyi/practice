@@ -13,6 +13,7 @@ import java.util.Iterator;
 public class PostOffice {
     enum MailHandler {
         GENERAL_DELIVER {
+            @Override
             boolean handle(Mail m) {
                 switch (m.generalDelivery) {
                     case YES:
@@ -24,6 +25,7 @@ public class PostOffice {
             }
         },
         MACHINE_SCAN {
+            @Override
             boolean handle(Mail m) {
                 switch (m.scannability) {
                     case UNSCANNABLE:
@@ -40,6 +42,7 @@ public class PostOffice {
             }
         },
         VISUAL_INSPECTION {
+            @Override
             boolean handle(Mail m) {
                 switch (m.readability) {
                     case ILLEGIBLE:
@@ -56,6 +59,7 @@ public class PostOffice {
             }
         },
         RETUNT_TO_SENDER {
+            @Override
             boolean handle(Mail m) {
                 switch (m.returnAddress) {
                     case MISSING:

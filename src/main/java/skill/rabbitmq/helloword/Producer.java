@@ -30,8 +30,8 @@ public class Producer {
          */
         channel.queueDeclare("chen-queue", false, false, false, null);
 
-        for (int i = 0; i < 10; i++) {
-            channel.basicPublish("", "chen-queue", MessageProperties.PERSISTENT_TEXT_PLAIN, (i + "生产者消息").getBytes());
+        for (int i = 0; i < 1; i++) {
+            channel.basicPublish("", "chen-queue", MessageProperties.PERSISTENT_BASIC, ("测试 认证").getBytes());
         }
 
         RabbitMQUtil.close(connection, channel);

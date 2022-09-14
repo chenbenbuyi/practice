@@ -1,6 +1,6 @@
-package designer.factory.model;
+package geek.designer.factory.model;
 
-import designer.factory.inter.Phone;
+import geek.designer.factory.inter.Phone;
 
 /**
  * @date: 2020/11/3 11:46
