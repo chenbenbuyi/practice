@@ -50,7 +50,7 @@ public class StreamTest {
             countDownLatch.countDown();
         });
         countDownLatch.await();
-
+        executor.shutdown();
         System.out.println("执行完毕。。。。。。。。");
 
     }
