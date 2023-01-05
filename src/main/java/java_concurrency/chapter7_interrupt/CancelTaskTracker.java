@@ -3,6 +3,7 @@ package java_concurrency.chapter7_interrupt;
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.concurrent.BasicThreadFactory;
+
 import java.util.*;
 import java.util.concurrent.*;
 
@@ -10,8 +11,8 @@ import java.util.concurrent.*;
  * @author chen
  * @date 2021/2/24 19:08
  * @Description 该类的结构可以获取线程池关闭时哪些正在执行的任务未执行完的
- *  exec.shutdownNow() 会让线程池强行关闭，但会返回已提交但未开始执行的任务，对于已经开始的任务，则被忽略
- *  关于 isTerminated 方法,若线程池关闭后所有任务都已完成(通过shutdownNow虽然不一定所有任务都完成，有的任务可能被中断，但是也要任务完全停止后才返回true,结合awaitTermination一起判断)，则返回true。注意——除非首先调用shutdown或shutdownNow，否则isTerminated永不为true。
+ * exec.shutdownNow() 会让线程池强行关闭，但会返回已提交但未开始执行的任务，对于已经开始的任务，则被忽略
+ * 关于 isTerminated 方法,若线程池关闭后所有任务都已完成(通过shutdownNow虽然不一定所有任务都完成，有的任务可能被中断，但是也要任务完全停止后才返回true,结合awaitTermination一起判断)，则返回true。注意——除非首先调用shutdown或shutdownNow，否则isTerminated永不为true。
  */
 
 @Slf4j
@@ -52,9 +53,9 @@ public class CancelTaskTracker extends ThreadPoolExecutor {
             } finally {
                 /**
                  *  isShutDown：当调用shutdown()或shutdownNow()方法后返回为true。
-                    isTerminated：当调用shutdown()方法后，并且所有提交的任务完成后返回为true;
-                    isTerminated：当调用shutdownNow()方法后，成功停止后返回为true;
-                    如果线程池任务正常完成，都为false
+                 isTerminated：当调用shutdown()方法后，并且所有提交的任务完成后返回为true;
+                 isTerminated：当调用shutdownNow()方法后，成功停止后返回为true;
+                 如果线程池任务正常完成，都为false
                  */
                 if (isShutdown() && Thread.currentThread().isInterrupted()) {
                     System.out.println("添加未执行完的线程任务：" + runnable.hashCode());
@@ -76,7 +77,9 @@ public class CancelTaskTracker extends ThreadPoolExecutor {
         ThreadFactory basicThreadFactory = new BasicThreadFactory.Builder().namingPattern("lang3-%s").build();
         ThreadFactory threadFactory = new ThreadFactoryBuilder().setNameFormat("guava-%s").build();
         ThreadFactory hutoolThreadFactory = cn.hutool.core.thread.ThreadFactoryBuilder.create().setNamePrefix("hutool-").build();
-        CancelTaskTracker exec = new CancelTaskTracker(4, 10, 0, TimeUnit.SECONDS, new ArrayBlockingQueue<>(4), hutoolThreadFactory);
+        // 新发现的一种指定线程池中线程名称的写法
+        ThreadFactory lambdThreadFactory = r -> new Thread(r, "线程名称-" + r.hashCode());
+        CancelTaskTracker exec = new CancelTaskTracker(4, 10, 0, TimeUnit.SECONDS, new ArrayBlockingQueue<>(4), lambdThreadFactory);
         for (int i = 0; i < 10; i++) {
             Runnable anonymous = new Runnable() {
                 @Override

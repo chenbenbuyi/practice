@@ -17,10 +17,10 @@ public class StringJoiner {
          */
         StringBuilder sb = new StringBuilder();
         sb.append("[").append("chen").append("-").append("ben").append("-").append("buyi").append("]");
-        log.info("StringBuilder 拼接结果：{}",sb);
+        log.info("StringBuilder 拼接结果：{}", sb);
         // 利用分隔符、前后缀构造对象
-        java.util.StringJoiner stringJoiner = new java.util.StringJoiner("-","[","]");
+        java.util.StringJoiner stringJoiner = new java.util.StringJoiner("-", "[", "]");
         stringJoiner.add("chen").add("ben").add("buyi");
-        log.info("StringJoiner 拼接结果：{}",stringJoiner);
+        log.info("StringJoiner 拼接结果：{}", stringJoiner);
     }
 }

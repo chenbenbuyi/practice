@@ -42,7 +42,7 @@ public class FastSimulation {
         for (int i = 0; i < 2; i++) {
             executor.execute(new Evolver());
         }
-        TimeUnit.SECONDS.sleep(3);
+        TimeUnit.SECONDS.sleep(30);
         executor.shutdownNow();
         System.out.println("关闭线程池");
     }
