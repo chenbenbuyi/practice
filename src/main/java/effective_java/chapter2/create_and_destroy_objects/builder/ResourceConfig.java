@@ -94,15 +94,4 @@ public class ResourceConfig {
             return this;
         }
     }
-
-
-    public static void main(String[] args) {
-        ResourceConfig config = ResourceConfig.builder()
-                .setName("资源配置对象")
-                .setMaxTotal(16)
-                .setMaxIdle(10)
-                .setMinIdle(12)
-                .build();
-
-    }
 }
