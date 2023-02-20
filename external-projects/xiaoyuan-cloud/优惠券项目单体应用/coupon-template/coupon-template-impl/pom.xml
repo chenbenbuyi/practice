@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>coupon-template</artifactId>
+        <groupId>buyi.stu</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>coupon-template-impl</artifactId>
+    <description>
+        核心业务逻辑的实现层，对外提供 REST API。当某个上游服务需要获取 coupon-template 的接口参数时，只要导入轻量级的 coupon-template-api 模块，就能够获取接口中定义的 Request 和 Response 的类模板，不需要引入多余的依赖项（比如 Dao 层或者 Service 层）
+    </description>
+
+
+</project>

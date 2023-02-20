@@ -11,6 +11,7 @@ import java.util.TimeZone;
 public class CommonMistakesApplication {
 
     public static void main(String[] args) throws Exception {
+        System.out.println(new Date(0));
         wrong();
         right();
         better();
