@@ -1,7 +1,9 @@
 package com.chenbenbuyi.springframework.common.service.impl;
 
+import com.chenbenbuyi.springframework.common.service.AutowiredService;
 import com.chenbenbuyi.springframework.common.service.HelloService;
 import com.chenbenbuyi.springframework.common.service.UserService;
+import com.chenbenbuyi.springframework.ioc3.beans.factory.annotation.Autowired;
 
 /**
  * @author chen
@@ -17,6 +19,9 @@ public class HelloServiceImpl implements HelloService {
 
     // 对象注入
     private UserService userService;
+
+    @Autowired
+    private AutowiredService autowiredService;
 
     // todo 构造器注入
 
@@ -36,5 +41,7 @@ public class HelloServiceImpl implements HelloService {
     @Override
     public void sayHello() {
         System.out.println("构造器注入的名称：" + name + ",年龄：" + age + ",属性注入的地址：" + addr);
+        userService.login();
+        autowiredService.helloAutowired();
     }
 }
