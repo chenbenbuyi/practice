@@ -18,12 +18,13 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ShoppingCart {
-
+    // 订单的商品列表
     @NotEmpty
     private List<Product> products;
 
     private Long couponId;
 
+    // 订单的最终价格
     private long cost;
 
     // 目前只支持单张优惠券
