@@ -1,12 +1,15 @@
 package chenbenbuyi.coupon.calculation.template.impl;
 
 import chenbenbuyi.coupon.calculation.template.AbstractRuleTemplate;
+import org.springframework.stereotype.Component;
 
 /**
  * @author chen
  * @date 2023/2/22 22:49
  * @Description PAU客户专用优惠计算逻辑，每笔订单享受996暴击
  */
+
+@Component
 public class AntiPauTemplate extends AbstractRuleTemplate {
 
 

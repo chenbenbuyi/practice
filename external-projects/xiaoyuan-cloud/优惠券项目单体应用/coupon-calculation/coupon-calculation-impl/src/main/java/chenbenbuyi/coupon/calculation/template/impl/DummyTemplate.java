@@ -2,12 +2,15 @@ package chenbenbuyi.coupon.calculation.template.impl;
 
 import chenbenbuyi.coupon.calculation.api.beans.ShoppingCart;
 import chenbenbuyi.coupon.calculation.template.AbstractRuleTemplate;
+import org.springframework.stereotype.Component;
 
 /**
  * @author chen
  * @date 2023/2/22 22:52
  * @Description 空实现
  */
+
+@Component
 public class DummyTemplate extends AbstractRuleTemplate {
 
     @Override
