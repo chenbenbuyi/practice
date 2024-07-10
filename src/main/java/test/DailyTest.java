@@ -1,6 +1,5 @@
 package test;
 
-import org.junit.Test;
 
 /**
  * @author csxian
@@ -12,10 +11,9 @@ public class DailyTest {
     /**
      *  三元表达式注意在涉及类型隐式转换时的空值问题
      */
-    @Test
-    public void testNpe() {
+    public static void main(String[] args) {
         Integer b = null;
-        Integer a = false ? 3 + 3 : b;
+        Integer a = false ? Integer.valueOf(3 + 3) : b;
         System.out.println(a);
     }
 }

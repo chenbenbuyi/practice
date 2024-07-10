@@ -80,12 +80,6 @@
             <artifactId>cglib</artifactId>
             <version>3.3.0</version>
         </dependency>
-        <!-- 密码机接口 以下三个依赖都需要 -->
-        <!--<dependency>
-            <groupId>cipher</groupId>
-            <artifactId>atom-cipher-api</artifactId>
-            <version>1.0.0</version>
-        </dependency>-->
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
@@ -121,24 +115,24 @@
             <!--
             利用 maven-install-plugin 插件来安装 jar 包到 maven 本地仓库
             -->
-            <plugin>
+            <!--<plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-install-plugin</artifactId>
                 <version>2.5.2</version>
                 <executions>
                     <execution>
                         <id>install-demo-jar</id>
-                        <!-- 阶段：设定在 mvn clean 时执行安装,如果设定为 validate，那么就是在 mvn validate 时才安装
+                        &lt;!&ndash; 阶段：设定在 mvn clean 时执行安装,如果设定为 validate，那么就是在 mvn validate 时才安装
                          ps：执行mvn clean 就会在控制台看到以下输出，然后就可以在项目中以pom方式引入jar
                          Installing C:\Software\WorkSpace\practice\lib\bcprov-jdk15on-158.jar to C:\Software\repository\com\bcprov\jdk15on\1.0\jdk15on-1.0.jar
                          Installing C:\Users\admin\AppData\Local\Temp\mvninstall5178866907839008791.pom to C:\Software\repository\com\bcprov\jdk15on\1.0\jdk15on-1.0.pom
 
-                         -->
+                         &ndash;&gt;
                         <phase>clean</phase>
                         <configuration>
-                            <!-- 路径：这就是刚才添加的 jar 路径 -->
+                            &lt;!&ndash; 路径：这就是刚才添加的 jar 路径 &ndash;&gt;
                             <file>${project.basedir}/lib/bcprov-jdk15on-158.jar</file>
-                            <!-- 属性：下面的这三个属性，就是后面我们添加依赖时的值 -->
+                            &lt;!&ndash; 属性：下面的这三个属性，就是后面我们添加依赖时的值 &ndash;&gt;
                             <groupId>com.bcprov</groupId>
                             <artifactId>jdk15on</artifactId>
                             <version>1.0</version>
@@ -146,12 +140,12 @@
                             <generatePom>true</generatePom>
                         </configuration>
                         <goals>
-                            <!-- 目标：安装外部的 jar 文件到 maven 本地仓库 -->
+                            &lt;!&ndash; 目标：安装外部的 jar 文件到 maven 本地仓库 &ndash;&gt;
                             <goal>install-file</goal>
                         </goals>
                     </execution>
                 </executions>
-            </plugin>
+            </plugin>-->
         </plugins>
     </build>
 
