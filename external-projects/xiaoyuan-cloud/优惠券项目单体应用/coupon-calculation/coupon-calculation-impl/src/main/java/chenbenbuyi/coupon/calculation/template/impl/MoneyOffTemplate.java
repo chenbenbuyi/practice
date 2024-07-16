@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 /**
  * @author chen
  * @date 2023/2/22 22:47
- * @Description
+ * @Description 满减实现类
  */
 @Slf4j
 @Component

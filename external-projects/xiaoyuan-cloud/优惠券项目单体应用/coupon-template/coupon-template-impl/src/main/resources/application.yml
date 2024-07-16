@@ -9,7 +9,8 @@ spring:
   datasource:
     # mysql数据源
     username: root
-    password: 123456
+#    password: 123456
+    password:
     url: jdbc:mysql://127.0.0.1:3306/coupon_db?autoReconnect=true&useUnicode=true&characterEncoding=utf8&useSSL=false&allowPublicKeyRetrieval=true&zeroDateTimeBehavior=convertToNull&serverTimezone=UTC
     # 指定数据源DataSource类型
     type: com.zaxxer.hikari.HikariDataSource

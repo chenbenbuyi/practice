@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+
+<beans>
+
+
+    <bean id="userService" class="com.chenbenbuyi.springframework.common.service.impl.UserServiceImpl"/>
+
+    <bean id="helloService" class="com.chenbenbuyi.springframework.common.service.impl.HelloServiceImpl">
+        <constructor-arg type="java.lang.String" name="name" value="陈某人"/>
+        <constructor-arg type="int" name="age" value="30"/>
+        <property type="java.lang.String" name="addr" value="四川简阳"/>
+        <property type="com.chenbenbuyi.springframework.common.service.UserService" name="userService" ref="userService"/>
+    </bean>
+</beans>

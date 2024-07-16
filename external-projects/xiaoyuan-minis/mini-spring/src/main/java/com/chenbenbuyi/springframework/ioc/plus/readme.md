@@ -1,0 +1,2 @@
+
+##### 基础版本中， ClassPathXmlApplicationContext 承担了太多的功能，不符合对象单一职责原则。此包在基础之上进行优化：分解这个类ClassPathXmlApplicationContext，模拟Spring提取出一个最基础的核心容器BeanFactory，再把 XML 这种外部配置信息抽象成Resource，把对外部资源的访问都单独剥离出去便于后续扩展

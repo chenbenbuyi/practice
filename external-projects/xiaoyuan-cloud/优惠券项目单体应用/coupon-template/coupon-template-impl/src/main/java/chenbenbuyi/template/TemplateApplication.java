@@ -12,7 +12,13 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
  */
 
 @SpringBootApplication
-@EnableJpaAuditing
+/**
+ *  单机版本中，如果在用户中心模块启动服务，则该注解不需要，否则容器中会有两个@EnableJpaAuditing注解的Bean：
+ *  The bean 'jpaAuditingHandler' could not be registered. A bean with that name has already been defined and overriding is disabled.
+ *
+ *  @EnableJpaAuditing 注解的作用是开启 @CreatedDate 等注解的自动填充
+ */
+//@EnableJpaAuditing
 //@ComponentScan(basePackages = {"chenbenbuyi"})
 @ComponentScan
 public class TemplateApplication {

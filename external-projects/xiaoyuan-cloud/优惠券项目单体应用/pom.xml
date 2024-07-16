@@ -7,7 +7,6 @@
         <module>coupon-template</module>
         <module>coupon-calculation</module>
         <module>coupon-customer</module>
-        <module>middleware</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
