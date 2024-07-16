@@ -1,6 +1,6 @@
 package thinckingInJava.part19_enum.test;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import thinckingInJava.part19_enum.p1.One;
 import thinckingInJava.part19_enum.p1.One2;
 import thinckingInJava.part19_enum.p1.Two;

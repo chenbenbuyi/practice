@@ -1,6 +1,6 @@
 package chenbenbuyi.api.commonmistakes.java8;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.function.*;

@@ -1,8 +1,7 @@
 package geek.designer.strategy;
 
 import lombok.extern.slf4j.Slf4j;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.EnumMap;
 import java.util.HashMap;
@@ -46,7 +45,6 @@ public class FunctionTest {
     //    private Map<String, UnaryOperator<String>> dispatcherMap = new HashMap<>();
     private EnumMap<Phone, Function<Phone, String>> dispatcherEnumMap = new EnumMap<>(Phone.class);
 
-    @Before
     public void testBefore() {
         dispatcherMap.put("校验1", order -> String.format("对%s执行业务逻辑1", order));
         dispatcherMap.put("校验2", order -> String.format("对%s执行业务逻辑2", order));
@@ -81,6 +79,7 @@ public class FunctionTest {
 
     @Test
     public void strategyTest() {
+        testBefore();
         log.info("获取的策略结果：{}", checkResultEnum(Phone.XIAOMI));
         log.info("获取的策略结果：{}", checkResultStr("校验3"));
         log.info("获取的策略结果：{}", checkResultStr("校验7"));

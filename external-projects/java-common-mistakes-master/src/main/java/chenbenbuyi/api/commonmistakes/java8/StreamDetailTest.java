@@ -4,7 +4,7 @@ package chenbenbuyi.api.commonmistakes.java8;
 import chenbenbuyi.api.commonmistakes.java8.collector.MostPopularCollector;
 import chenbenbuyi.commonmistakes.java8.collector.MostPopularCollector;
 import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

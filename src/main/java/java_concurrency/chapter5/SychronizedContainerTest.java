@@ -1,6 +1,6 @@
 package java_concurrency.chapter5;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.*;
 import java.util.concurrent.CyclicBarrier;

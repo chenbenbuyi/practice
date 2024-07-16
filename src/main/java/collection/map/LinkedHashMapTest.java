@@ -1,7 +1,6 @@
 package collection.map;
 
 import lombok.extern.slf4j.Slf4j;
-import org.junit.Test;
 import thinckingInJava.part17_collection.p8_map.CountingMapData;
 
 import java.util.LinkedHashMap;

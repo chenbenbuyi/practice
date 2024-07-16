@@ -2,7 +2,7 @@ package concurrency.pool;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.RandomUtils;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Array;
 import java.util.Arrays;
@@ -38,6 +38,7 @@ public class ForkJoinTest {
 
     private class ForkJoinTask extends RecursiveTask<Integer> {
 
+        private static final long serialVersionUID = -6210851159340377932L;
         private int first;
         private int last;
 
@@ -133,6 +134,7 @@ public class ForkJoinTest {
      * 源自借极客时间《Java 并发编程实战》 第 26 讲案例
      */
     static class Fibonacci extends RecursiveTask<Integer> {
+        private static final long serialVersionUID = -6184685958922959004L;
         final int n;
 
         Fibonacci(int n) {
