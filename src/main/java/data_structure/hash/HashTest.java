@@ -1,6 +1,6 @@
 package data_structure.hash;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 /**
  * @date: 2021/3/30 12:00

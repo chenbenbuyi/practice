@@ -2,7 +2,7 @@ package collection.list;
 
 import collection.list.model.Book;
 import lombok.SneakyThrows;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Iterator;

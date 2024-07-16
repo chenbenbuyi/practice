@@ -1,7 +1,7 @@
 package geek.designer.strategy;
 
 import lombok.extern.slf4j.Slf4j;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import java.util.EnumMap;
 import java.util.HashMap;

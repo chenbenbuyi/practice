@@ -2,7 +2,7 @@ package jvm.classloader;
 
 import cn.hutool.core.util.ClassLoaderUtil;
 import jvm.classloader.spi.IHelloadler;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import sun.misc.Launcher;
 
 import java.io.File;

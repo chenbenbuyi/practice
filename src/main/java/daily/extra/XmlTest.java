@@ -1,7 +1,7 @@
 package daily.extra;
 
 import cn.hutool.core.io.FileUtil;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import skill.xml.Menu;
 import skill.xml.Menus;
 import skill.xml.User;
