@@ -1,13 +1,18 @@
 package concurrency.pool;
 
+import cn.hutool.core.date.TimeInterval;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.RandomUtils;
 import org.junit.Test;
 
+import java.io.File;
 import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.*;
+import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * @author chen
@@ -248,5 +253,141 @@ public class ForkJoinTest {
         //输出结果
         log.info("执行结果：{}", result);
     }
+
+    private static AtomicLong counter = new AtomicLong(0L);
+
+
+    /**
+     *  通过对比测试，在这种业务场景下，使用forkjoin比传统的递归速度有明显的提升
+     */
+    @SneakyThrows
+    @Test
+    public void testFile(){
+
+        String filePath = "C:\\Software\\Working";
+
+        TimeInterval timeInterval = new TimeInterval();
+        fileRecursion(new File(filePath));
+        System.out.println("普通递归方式花费:" + timeInterval.intervalRestart() / 1000.0 + "秒，总文件数量：" + counter.get());
+
+        System.out.println("---------------------------分割线-------------------------");
+        counter.set(0);
+
+        ForkJoinPool forkjoinPool = new ForkJoinPool(6);
+        File file = new File(filePath);
+        FileForkJoinAction action = new FileForkJoinAction(file);
+        forkjoinPool.invoke(action);
+        // 停止接收任务
+        forkjoinPool.shutdown();
+        //等待任务执行结束
+        forkjoinPool.awaitTermination(2, TimeUnit.SECONDS);
+        System.out.println("ForkJoin优化方式花费:" + timeInterval.intervalRestart() / 1000.0 +  "秒，总文件数量：" + counter.get());
+
+        System.out.println("---------------------------分割线-------------------------");
+        counter.set(0);
+
+        forkjoinPool = new ForkJoinPool(6);
+        FileForkJoinTask task = new FileForkJoinTask(file);
+        List<String> list = forkjoinPool.invoke(task);
+        //阻塞当前线程直到 ForkJoinPool 中所有的任务都执行结束
+        forkjoinPool.awaitTermination(2, TimeUnit.SECONDS);
+        // 关闭线程池
+        forkjoinPool.shutdown();
+        // todo 缓存中不足1000条的剩余数据处理
+        counter.addAndGet(list.size());
+
+        System.out.println("ForkJoin优化方式花费:" + timeInterval.intervalRestart() / 1000.0 +  "秒，总文件数量：" + counter.get());
+    }
+
+    /**
+     * 递归遍历文件统计指定目录下的总文件数量
+     * 获取到C:\Software\Working目录下 122981 个文件总花费 35s
+     */
+    private void fileRecursion(File file) {
+        if (file != null) {
+            if (file.isDirectory()) {
+                File[] files = file.listFiles();
+                if (files != null)
+                    for (File son : files) {
+                        fileRecursion(son);
+                    }
+            } else {
+                counter.incrementAndGet();
+            }
+        }
+    }
+
+
+    private class FileForkJoinAction extends RecursiveAction {
+        private static final long serialVersionUID = -7560534663117090540L;
+        private File path; // 当前要搜索的目录
+        public FileForkJoinAction(File path) {
+            this.path = path;
+        }
+        @Override
+        protected void compute() {
+            try {
+                // 定义一个文件目录集合
+                List<FileForkJoinAction> subTasks = new ArrayList<>();
+                // 根据当前要搜索目录的，找到所有的文件
+                File[] files = path.listFiles();
+                // 判断是否为空，不为空则继续往下搜索
+                if (null != files) {
+                    for (File file : files) {
+                        // 判断是否是目录
+                        if (file.isDirectory()) {
+                            subTasks.add(new FileForkJoinAction(file));
+                        } else {
+                            counter.incrementAndGet();
+                        }
+                    }
+                    if (!subTasks.isEmpty()) {
+                        for (FileForkJoinAction subTask : invokeAll(subTasks)) {
+                            // 等待子任务完成
+                            subTask.join();
+                        }
+                    }
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private static class FileForkJoinTask extends RecursiveTask<List<String>> {
+        private static final long serialVersionUID = 8646384229832296891L;
+
+        private File file;
+        public FileForkJoinTask(File file) {
+            this.file = file;
+        }
+
+        @Override
+        protected List<String> compute() {
+            List<String> buffer = new ArrayList<>();
+            if (file != null) {
+                if (file.isDirectory()) {
+                    File[] sons = file.listFiles();
+                    if (sons != null && sons.length > 0) {
+                        for (File son : sons) {
+                            FileForkJoinTask task = new FileForkJoinTask(son);
+                            invokeAll(task);
+                            List<String> join = task.join();
+                            buffer.addAll(join);
+                            if (buffer.size() > 1000) {
+                                // todo 缓存批处理, 拿到指定批量的值做诸如存库等其它业务逻辑处理
+                                counter.addAndGet(buffer.size());
+                                buffer.clear();
+                            }
+                        }
+                    }
+                } else {
+                    buffer.add(file.getAbsolutePath());
+                }
+            }
+            return buffer;
+        }
+    }
+
 
 }
